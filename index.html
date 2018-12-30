@@ -1,0 +1,3869 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-12-30 dom 02:44 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bases para el periodismo de datos</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Adolfo Antón Bravo" />
+<meta name="description" content="Algunos apuntes alrededor del periodismo de datos para tomar el control del ordenador."
+ />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Bases para el periodismo de datos</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org236958a">Primera sesión</a>
+<ul>
+<li><a href="#org2650884">whoami</a></li>
+<li><a href="#orgfd79c50">Presentación</a>
+<ul>
+<li><a href="#org896ba39">Introducción al Periodismo de Datos</a></li>
+</ul>
+</li>
+<li><a href="#orgc00be02">Recolección de datos, ejemplo</a></li>
+<li><a href="#org5535b1f">Terminal</a>
+<ul>
+<li><a href="#orgaf69c5a">CLI, GUI y NUI</a></li>
+<li><a href="#org72beead">Algo de contexto histórico</a></li>
+</ul>
+</li>
+<li><a href="#orgda4acff">Bienvenida a BASH</a>
+<ul>
+<li><a href="#orgc5d67bb">Ventajas de la línea de comandos</a></li>
+</ul>
+</li>
+<li><a href="#org194560d">¿Cómo empezamos?</a>
+<ul>
+<li><a href="#orgaac9ce1">GNU/Linux</a></li>
+<li><a href="#org1fcd5b8">MacOSX</a></li>
+<li><a href="#org2e808e6">Windows</a></li>
+</ul>
+</li>
+<li><a href="#org703d8ad">Cygwin</a>
+<ul>
+<li><a href="#org3d4f4b0">Instalación</a></li>
+<li><a href="#org594b015">Instalar paquetes</a></li>
+<li><a href="#org60ca98f">Algunos paquetes interesantes</a></li>
+<li><a href="#org47541ce">apt-cyg</a></li>
+<li><a href="#orgba93c34">Cambiar la home de Cygwin</a></li>
+<li><a href="#org76018ba">Comandos de Cygwin en la consola de Windows</a></li>
+</ul>
+</li>
+<li><a href="#org3c25741">Configuración de editor por defecto</a></li>
+<li><a href="#org7113e52">Algunas utilidades</a>
+<ul>
+<li><a href="#org44e503d">Interrumpir un comando</a></li>
+<li><a href="#orga0b972d">Limpiar la línea</a></li>
+<li><a href="#org202f372">Salir de la terminal</a></li>
+<li><a href="#orge2b491e">Aliases</a></li>
+</ul>
+</li>
+<li><a href="#orgf31465a">Comandos como explorador de archivos</a>
+<ul>
+<li><a href="#org1bcbc92">whoami</a></li>
+<li><a href="#org4a3a9c5">ls</a></li>
+<li><a href="#org29d0d2c">pwd</a></li>
+<li><a href="#orge849a5f">touch</a></li>
+<li><a href="#orgd95fd14">file</a></li>
+<li><a href="#orgc972e51">mkdir</a></li>
+<li><a href="#org8219798">cd</a></li>
+<li><a href="#org1fe0679">cp</a></li>
+<li><a href="#orge6f33eb">mv</a></li>
+<li><a href="#orgc8a5b26">env</a></li>
+</ul>
+</li>
+<li><a href="#orgd6e52c6">Miscelánea</a>
+<ul>
+<li><a href="#org9d70c17">Buscadores</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org66da2de">Segunda sesión</a>
+<ul>
+<li><a href="#orgcc11618">Repaso de la primera sesión</a></li>
+<li><a href="#org92f2262">Operadores de búsqueda</a></li>
+<li><a href="#orge3f33c2">Editor de textos</a></li>
+<li><a href="#org3d7ccea">Repaso de la instalación de apt-cyg en Cygwin</a></li>
+<li><a href="#orgf689bc4">Brew</a></li>
+<li><a href="#org4d1dcf9">lynx</a></li>
+<li><a href="#orgafdb041">Grupo de Telegram</a></li>
+<li><a href="#orgaabe4d0">Símbolos escapados</a></li>
+<li><a href="#org8cb7bbf">API de BASH</a></li>
+<li><a href="#org8ace59d">Atajos de Bash</a></li>
+<li><a href="#orgee3b40b">Comodines</a>
+<ul>
+<li><a href="#org80a7909"><code>*</code></a></li>
+<li><a href="#orgd8364e2"><code>?</code></a></li>
+<li><a href="#org56e883b"><code>[]</code></a></li>
+</ul>
+</li>
+<li><a href="#orgf4be080">Proyectos interesantes referenciados</a></li>
+<li><a href="#orgc15b82c">Software hablado</a></li>
+<li><a href="#org4c1e232">Fun-da-men-tal?</a>
+<ul>
+<li><a href="#org7826792">How (not) to be a danger to yourself and others using the command line:</a></li>
+<li><a href="#org6805070">¿Puede  un periodista usar la línea de comandos?</a></li>
+<li><a href="#orga1cbb3b">Introducción a la línea de comandos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org0cacf34">Tercera sesión</a>
+<ul>
+<li><a href="#org2f92f10">URL y más allá</a></li>
+<li><a href="#org013af20">Repaso de atajos</a>
+<ul>
+<li><a href="#orga92a4b7">Ordenador</a></li>
+<li><a href="#org9d73519">Sistema operativo</a></li>
+<li><a href="#orgb570926">Aplicaciones</a></li>
+<li><a href="#orgb1d6bd1">Navegador</a></li>
+<li><a href="#orge62432d">Web</a></li>
+</ul>
+</li>
+<li><a href="#org7444139">Open Refine</a>
+<ul>
+<li><a href="#org32368ea">Descarga de Open Refine:</a></li>
+<li><a href="#org08147ba">Manual de Open Refine:</a></li>
+</ul>
+</li>
+<li><a href="#orga8bec2b">Personalización de la línea de comandos</a></li>
+<li><a href="#org72fc565">Análisis de datos</a></li>
+<li><a href="#orgb6b12c2">Descarga de archivos</a>
+<ul>
+<li><a href="#org2e95844">curl</a></li>
+<li><a href="#org70f071b">wget</a></li>
+<li><a href="#orgce67fe3">lynx</a></li>
+</ul>
+</li>
+<li><a href="#org8e0b032">Exploración de archivos</a>
+<ul>
+<li><a href="#orgaf3c314">wc</a></li>
+<li><a href="#orga7a6a56">file</a></li>
+<li><a href="#org6ea125a">du</a></li>
+<li><a href="#org179ee3c">head</a></li>
+<li><a href="#org82eefe9">Qué es "^M"</a></li>
+<li><a href="#orgdbfd970">Codificación del archivo</a></li>
+<li><a href="#org753e680">tail</a></li>
+<li><a href="#org79435c3">split</a></li>
+<li><a href="#org3136354">grep</a></li>
+<li><a href="#org3d08c01">sed</a></li>
+<li><a href="#orgbb38fed">Cuántas columnas tiene</a></li>
+<li><a href="#org740a143">cut</a></li>
+</ul>
+</li>
+<li><a href="#orgfa53d24">Flujo de texto</a>
+<ul>
+<li><a href="#org118e1ba">sed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgccd4597">Cuarto día</a>
+<ul>
+<li><a href="#org8cd8fe0">Dudas</a>
+<ul>
+<li><a href="#org6601c0e">Conocer distintos tipos de formatos de (intercambio de) datos</a></li>
+<li><a href="#org43a29e7">Tipos de datos</a></li>
+<li><a href="#org9068892">Conversión de datos: XML, CSV, XLSX</a></li>
+<li><a href="#org4b3730b">¿Necesita Open Refine conexión a Internet?</a></li>
+<li><a href="#orge04c93d">Selección por fechas en refine y agrupación en Refine</a></li>
+<li><a href="#orgabb31f8">Grep es súper útil y lo demás sobra</a></li>
+<li><a href="#org2680e85">¿Y no vamos a ver algún programita que haga gráficos?</a></li>
+<li><a href="#org49704cc">Gestión paquetes windows</a></li>
+</ul>
+</li>
+<li><a href="#orgeefef65">Github</a></li>
+<li><a href="#org3d8a0dc">Hagamos nuestra propia web</a></li>
+</ul>
+</li>
+<li><a href="#orge7a8b40">Quinto día</a>
+<ul>
+<li><a href="#orgf3a2771">Desorden del día</a></li>
+<li><a href="#org3630d59">Repaso de línea de comandos</a>
+<ul>
+<li><a href="#org2dd8853">seq</a></li>
+</ul>
+</li>
+<li><a href="#orgc723e59">Web scraping</a>
+<ul>
+<li><a href="#org3064611">ImportHTML()</a></li>
+<li><a href="#orgbdf38c1">ImportXML()</a></li>
+<li><a href="#org2856db2">XPATH</a></li>
+<li><a href="#orgde95773">Más Scraping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org21796be">Sexto día</a>
+<ul>
+<li><a href="#org55d80c8">Desorden del día</a></li>
+<li><a href="#org868e712">QGIS</a></li>
+<li><a href="#org8122474">Repaso Github</a>
+<ul>
+<li><a href="#org2ceda4e">Cambiar el editor por defecto</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org0cfc07e">Séptimo día</a>
+<ul>
+<li><a href="#orge98d626">Desorden del día</a></li>
+<li><a href="#org2c8a9a2">Repaso general</a>
+<ul>
+<li><a href="#orgbd966ef">Resaltado de sintaxis en nano</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org079c83b">Extra</a>
+<ul>
+<li><a href="#orgfeff8dc">Cron y crontab</a>
+<ul>
+<li><a href="#orgfc6cad4">¿Qué cosas se pueden hacer?</a></li>
+<li><a href="#orga3224a4">Para listar las tareas</a></li>
+<li><a href="#org5b791b4">Para editar el archivo</a></li>
+<li><a href="#org0ff726e">Eliminar el archivo</a></li>
+<li><a href="#org128d23f">Sintaxis</a></li>
+<li><a href="#orge57ccf5">Una tarea del cron</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgb6847b2">Algunos enlaces desordenados</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org236958a" class="outline-2">
+<h2 id="org236958a">Primera sesión</h2>
+<div class="outline-text-2" id="text-org236958a">
+</div>
+
+<div id="outline-container-org2650884" class="outline-3">
+<h3 id="org2650884">whoami</h3>
+<div class="outline-text-3" id="text-org2650884">
+<p>
+Soy Adolfo Antón Bravo, doctor en Ciencias de la Información por la Universidad Complutense de Madrid.
+He trabajado durante casi diez años como socio de una cooperativa de servicios informáticos con software libre.
+Anteriormente trabajé de diseño web, diseño gráfico y periodista en diversos medios.
+Me podéis encontrar por:
+</p>
+<ul class="org-ul">
+<li>twitter: <a href="https://twitter.com/adolflow">tw:adolflow</a></li>
+<li>github: <a href="https://github.com/flowsta">gh:flowsta</a></li>
+<li>gmail: adolflow</li>
+<li>web: <a href="https://infotics.es">infotics.es</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfd79c50" class="outline-3">
+<h3 id="orgfd79c50">Presentación</h3>
+<div class="outline-text-3" id="text-orgfd79c50">
+<p>
+El programa del curso es muy ambicioso. Cada una de las partes podría llevarnos todo el curso. No hay
+obligación de dar todo, pero sí que es importante que sentemos lo más sólidamente posible unas buenas bases
+sobre las que poder aprender de todas esas u otras tecnologías de ahora en adelante y seamos capaces de
+acometer todo tipo de proyectos de periodismo de datos, ya sea porque podemos hacerlo, porque podemos
+aprenderlo o porque podemos pedir ayuda especializada.
+</p>
+
+<p>
+Al ser un curso presencial y colectivo, es importante que vayamos a la par, que aprendamos todxs. En este sentido, es muy importante decir en todo momento las dudas que tenemos, los fallos que se producen cuando intentamos hacer algo, no tener miedo a exponer la dificultad, los errores o lo que nos sugiere lo que estamos haciendo. De esta manera, no solo aprenderéis más quien realiza la pregunta sino que aprenderemos todxs, yo incluido.
+</p>
+</div>
+
+<div id="outline-container-org896ba39" class="outline-4">
+<h4 id="org896ba39">Introducción al Periodismo de Datos</h4>
+<div class="outline-text-4" id="text-org896ba39">
+<p>
+Dado que todxs -menos uno- sois periodistas, nos vamos a saltar la introducción al periodismo de datos ya que
+creo que es mejor que vayamos al turrón. directamente.
+</p>
+
+<p>
+La introducción que normalmente realizo &#x2013;en construcción- la podéis encontrar <a href="https://flowsta.github.io/periodismodatos/">aquí</a>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc00be02" class="outline-3">
+<h3 id="orgc00be02">Recolección de datos, ejemplo</h3>
+<div class="outline-text-3" id="text-orgc00be02">
+<p>
+Empezamos con una recolección de datos de todxs vosotrxs y de vuestras aptitudes para saber/ver varias cosas:
+</p>
+
+<ul class="org-ul">
+<li>Quiénes sois</li>
+<li>Qué estudios tenéis</li>
+<li>Dónde habéis estudiado</li>
+<li>De dónde venís</li>
+</ul>
+
+<p>
+En esta recopilación se plantean algunas cuestiones habituales que ocurren cada vez que pensamos en un modelo
+de datos.
+</p>
+
+<p>
+Además, hay algunos datos controvertidos por su caracter personal como:
+</p>
+<ul class="org-ul">
+<li>Edad</li>
+<li>Género</li>
+</ul>
+
+<p>
+El proceso de recolección es una de las fases más importantes del proceso del periodismo de datos.
+</p>
+
+<p>
+En relación a vuestras aptitudes, sirve para:
+</p>
+<ul class="org-ul">
+<li>Saber cómo os consideráis en relación a algunos saberes importantes para el periodismo de datos.</li>
+<li>Orientar las horas del curso.</li>
+</ul>
+
+<p>
+Al final del curso, haremos otra recogida de datos y veremos cómo os ha ido.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org5535b1f" class="outline-3">
+<h3 id="org5535b1f">Terminal</h3>
+<div class="outline-text-3" id="text-org5535b1f">
+<p>
+En este curso vamos a empezar por la terminal. Cuando me refiero a la terminal en realidad me refiero a una
+emulación de la terminal que era la interfaz de texto que tenían los ordenadores antes de las interfaces
+gráficas.
+</p>
+
+<p>
+También se le conoce por consola, en cuanto que es una consola &#x2013;aunque mucha gente lo puede confundir con una
+consola de videojuegos&#x2013; o por línea de comandos, ya que se introducen comandos.
+</p>
+</div>
+
+<div id="outline-container-orgaf69c5a" class="outline-4">
+<h4 id="orgaf69c5a">CLI, GUI y NUI</h4>
+<div class="outline-text-4" id="text-orgaf69c5a">
+<p>
+En la terminal se introducen comandos que ejecutan programas CLI, acrónimo que obedece a <i>Command Line
+Interface</i> o <i>interfaz de línea de comandos</i>.
+</p>
+
+<p>
+En los entornos gráficos o interfaces gráficas hay programas GUI, acrónimom que responde a <i>Graphic User
+Interface</i> o <i>intefaz gráfica de usuarix</i>.
+</p>
+
+<p>
+Pero también hemos trabajado -de hecho lo hacemos todos los días- con interfaces <i>NUI</i> (<i>Natural User
+Interface</i> o <i>interfaz natural de usuarix</i>) como pueden ser las pantallas
+capacitivas multitáctiles, <i>Kinect</i> &#x2013;con el movimiento&#x2013; o <i>Siri</i> o <i>Alexia</i>
+&#x2013;con el reconocimiento de lenguaje natural&#x2013;.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org72beead" class="outline-4">
+<h4 id="org72beead">Algo de contexto histórico</h4>
+<div class="outline-text-4" id="text-org72beead">
+<p>
+Al inicio de los ordenadores, solo había líneas de comandos para
+comunicarnos con ellos. Bell Telephone lanzó en 1969 <i>V1</i> sobre <i>UNIX</i>
+Timeshare System. UNIX tenía la shell <i>sh</i> que era la única
+forma de comunicarse con el ordenador.
+</p>
+
+<p>
+Así fue hasta 1973, cuando Las <i>GUI</i> fueron desarrollados en el
+<i>Centro de Investigación de Xerox en Palo Alto</i> (<i>Palo Alto Research
+Center</i>, <i>PARC</i>).
+</p>
+
+<p>
+Tiempo después, <i>Apple</i> pagó para estudiar la idea, que finalmente se
+concreto en su <i>GUI</i>.
+</p>
+
+<p>
+El MIT desarrolla una GUI para Unix en 1986, X.
+</p>
+
+<p>
+El sistema XFree86 de Linux se desarrolló en 1996, una implementación
+libre del original X, al que homenajea en el nombre.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgda4acff" class="outline-3">
+<h3 id="orgda4acff">Bienvenida a BASH</h3>
+<div class="outline-text-3" id="text-orgda4acff">
+<p>
+<a href="https://es.wikipedia.org/wiki/Bash">Bash</a> (Bourne-again shell) es a la vez un programa que interpreta órdenes y un lenguaje de programación. Es la
+shell POSIX que viene por defecto en la mayoría de las distribuciones.
+</p>
+
+<p>
+Se trata de un acrónimo recursivo y juego de palabras &#x2013;una práctica habitual en el movimiento del software libre&#x2013; que significa
+"Shell vuelta a nacer", en un homenaje a uno de los primeros intérpretes de Unix <a href="https://es.wikipedia.org/wiki/Bourne_Shell">Bourne Shell</a>, escrita por
+Stephen Bourne en 1978 para Unix v.7 (Bell Labs). Brian Fox escribe Bash para GNU en 1987.
+</p>
+</div>
+
+
+<div id="outline-container-orgc5d67bb" class="outline-4">
+<h4 id="orgc5d67bb">Ventajas de la línea de comandos</h4>
+<div class="outline-text-4" id="text-orgc5d67bb">
+<ul class="org-ul">
+<li>Ahorras tiempo, muuuuucho tieeeeempo</li>
+<li>Te ofrecen una alternativa a las GUI.</li>
+<li>Te acercan más a cómo funcionan los sistemas POSIX.</li>
+<li>Funcionas con atajos compartidos.</li>
+<li>Te preparan para la programación.</li>
+<li>Aprendes otra forma de hacer las cosas.</li>
+<li>Te empodera.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org194560d" class="outline-3">
+<h3 id="org194560d">¿Cómo empezamos?</h3>
+<div class="outline-text-3" id="text-org194560d">
+<p>
+Necesitamos un programa que emula la terminal.
+</p>
+</div>
+<div id="outline-container-orgaac9ce1" class="outline-4">
+<h4 id="orgaac9ce1">GNU/Linux</h4>
+<div class="outline-text-4" id="text-orgaac9ce1">
+<p>
+Abrimos la terminal. Entiendo que si tienes GNU/Linux, sabes hacer esto, pero si no, basta con buscar terminal
+entre los programas que tenemos instalados.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1fcd5b8" class="outline-4">
+<h4 id="org1fcd5b8">MacOSX</h4>
+<div class="outline-text-4" id="text-org1fcd5b8">
+<p>
+Lxs usuarixs de MacOSX lo tienen aparentemente más fácil dado que tienen un programa llamado Terminal
+(Utilidades &#x2013;&gt; Terminal) que es un buen comienzo. En versiones anteriores de MacOSX puede haber problemas o
+inconvenientes, ya sea porque no esté activado XCode o porque sea difícil hacerlo.
+</p>
+</div>
+</div>
+<div id="outline-container-org2e808e6" class="outline-4">
+<h4 id="org2e808e6">Windows</h4>
+<div class="outline-text-4" id="text-org2e808e6">
+<p>
+Aunque versiones modernas &#x2013;Windows 10&#x2013; proveé una terminal, lo haremos con un programa llamado Cygwin que
+ofrece una completa emulación de terminal POSIX en Windows que a la postre puede resultar incluso más fácil de
+usar que la de Mac.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org703d8ad" class="outline-3">
+<h3 id="org703d8ad">Cygwin</h3>
+<div class="outline-text-3" id="text-org703d8ad">
+<p>
+<a href="https://www.cygwin.com/">Cygwin</a> es una emulación de la terminal UNIX en Windows.
+</p>
+
+<p>
+Aunque este es un paso obligatorio para lxs usuarixs de Windows, el resto debe atender pues se explican
+conceptos que nos van a resultar útiles en otros momentos del curso.
+</p>
+</div>
+
+<div id="outline-container-org3d4f4b0" class="outline-4">
+<h4 id="org3d4f4b0">Instalación</h4>
+<div class="outline-text-4" id="text-org3d4f4b0">
+<p>
+Hemos de hacer 4 pasos:
+</p>
+<ul class="org-ul">
+<li>Descarga del programa.</li>
+<li>Instalar apt-cyg y con ello el resto de paquetes con los que queremos trabajar.</li>
+<li>Instalar <code>nano</code> como editor por defecto en vez de <code>vi</code>.</li>
+<li>Cambiar la variable <code>db_home</code> para acceder a la estructura de directorios de Windows.</li>
+</ul>
+
+<p>
+Salvo la descarga del programa en sí, el orden de las siguientes tareas responde a nuestros intereses. Lo explicamos.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org594b015" class="outline-4">
+<h4 id="org594b015">Instalar paquetes</h4>
+<div class="outline-text-4" id="text-org594b015">
+<p>
+La consola viene con un conjunto de paquetes básicos. Para usar más paquetes, en el momento de la instalación
+del <code>setup</code>, tenemos que elegir los paquetes.
+</p>
+
+<p>
+Instalamos <code>nano</code> porque necesitamos un editor de textos en la consola, un editor de textos CLI que nos aporta
+velocidad y precisión. Y necesitaremos más.
+</p>
+
+<p>
+Una vez que lo instalamos, empezamos a utilizar Cywgin. Pero, ¿qué pasa si quermeos otro programa? Que hemos
+de cerrar Cywgin y volver a correr el instalador.
+</p>
+
+<p>
+Podrías pensar que "¿por qué no instalar todos de una sola vez?", porque es una mala práctica, no tiene
+sentido y ocuparía muchísimo. Es como si para consultar un libro en una biblioteca tuvieras que descargarte
+todos&#x2026;
+</p>
+
+<p>
+Para facilitar este proceso utilizaremos apt-cyg, que es un gestor de paquetes &#x2013;programas&#x2013; para cygwin.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org60ca98f" class="outline-4">
+<h4 id="org60ca98f">Algunos paquetes interesantes</h4>
+<div class="outline-text-4" id="text-org60ca98f">
+<ul class="org-ul">
+<li>nano, editor de texto.</li>
+<li>git, para trabajar con git, software de control de versiones.</li>
+<li>imagemagick, para manipular imágenes.</li>
+<li>emacs, editor de texto.</li>
+<li>python, para trabajar con Python.</li>
+<li>R, para trabajar con R.</li>
+<li>perl, para trabajar con perl.</li>
+<li>ruby, para trabajar con ruby.</li>
+<li>tesseract, herramienta de reconocimiento óptico de caracteres
+(<i>OCR</i>), con los paquetes en inglés y español dado que son los
+idiomas más habituales.</li>
+<li>grep, para realizar búsquedas en el texto.</li>
+<li>pdfgrep: para realizar búsquedas en texto de pdfs.</li>
+<li>sgrep, para realizar búsquedas de texto en documentos SGML, XML o
+HTML.</li>
+<li>awk y gawk, para procesar texto.</li>
+<li>sed, para editar flujos de texto.</li>
+<li>qpdf, para transformación de PDF</li>
+<li>xpdf, para visionar y otras operaciones con pdf</li>
+<li>odt2txt, para pasar un odt a txt.</li>
+<li>xlsx2csv, para pasar un xlsx a csv.</li>
+<li>p7zip, archivar y comprimir datos.</li>
+<li>gzip, compresor de datos</li>
+<li>unzip, descompresor de datos</li>
+<li>zip, compresor de datos</li>
+<li>lynx, visor web</li>
+<li>links, visor web</li>
+<li>curl, transferencia de archivos multiprotocolo</li>
+<li>wget, descargar archivos de la web</li>
+<li>less, paginador, similar a more</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org47541ce" class="outline-4">
+<h4 id="org47541ce">apt-cyg</h4>
+<div class="outline-text-4" id="text-org47541ce">
+<p>
+<a href="https://github.com/transcode-open/apt-cyg">apt-cyg</a> es un gestor de paquetes de Cygwin que funciona en línea de comandos. El nombre proviene de ser como
+un <a href="https://wiki.debian.org/Apt">apt</a> para Cygwin. Un APT (<i>Advanced Package Tool</i>) es un conjunto de herramientas para manejar los paquetes
+&#x2013;programas&#x2013; de los sistemas Debian GNU/Linux. Se ha hecho muy popular su funcionamiento y otros sistemas
+operativos lo han imitado porque permite:
+</p>
+<ul class="org-ul">
+<li>Instalar programas.</li>
+<li>Desinstalar programas.</li>
+<li>Actualizar programas.</li>
+<li>Resolver dependencias de los programas de forma automática.</li>
+</ul>
+
+<p>
+Para instalarlo, tal como cuentan en su página web:
+</p>
+
+<pre class="example">
+lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg &gt; apt-cyg
+install apt-cyg /bin
+
+</pre>
+
+<p>
+Cerramos Cygwin y volvemos a abrirlo.
+</p>
+
+<p>
+Ahora ya podremos instalar un editor como <code>nano</code> como sigue:
+</p>
+
+<pre class="example">
+apt-cyg install nano
+</pre>
+
+<p>
+De su ayuda, vemos el listado de opciones &#x2013;argumentos&#x2013; que tiene:
+</p>
+
+<dl class="org-dl">
+<dt><code>install</code></dt><dd>para instalar paquetes.</dd>
+<dt><code>remove</code></dt><dd>para borrar paquetes.</dd>
+<dt><code>update</code></dt><dd>descarga una copia de la lista de paquetes del servidor.</dd>
+<dt><code>download</code></dt><dd>descarga los paquetes del servidor pero no los instala ni actualiza.</dd>
+<dt><code>show</code></dt><dd>muestra información del paquete.</dd>
+<dt><code>depends</code></dt><dd>muestra el árbol de dependencia de un paquete.</dd>
+<dt><code>rdepends</code></dt><dd>produce un arbol de paquetes que dependen de ese.
+Produce a tree of packages that depend on the named package.</dd>
+<dt><code>list</code></dt><dd>busca en los paquetes instalados coincidencias con esa expresión regular.</dd>
+<dt><code>listall</code></dt><dd>buscará cada paquete en el listado de paquetes por coincidencias con esa expresión regular.</dd>
+<dt><code>category</code></dt><dd>muestra todos los paquetes que forman parte de una categoría.</dd>
+<dt><code>listfiles</code></dt><dd>lista los archivos que pertenecen a un paquete. Se pueden especificar varios archivos.</dd>
+<dt><code>search</code></dt><dd>busca por paquetes descargados propietarios de uno o varios archivos.</dd>
+<dt><code>searchall</code></dt><dd>busca en cygwin.com información sobre los paquetes. El objetivo es un archivo y <code>searchall</code> devolverá los paquetes que contengan ese archivo.</dd>
+<dt><code>packageof</code></dt><dd>seguido de archivos o instrucciones, localiza paquetes que los contiene.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgba93c34" class="outline-4">
+<h4 id="orgba93c34">Cambiar la home de Cygwin</h4>
+<div class="outline-text-4" id="text-orgba93c34">
+<p>
+Por defecto, la home del usuarix de Cygwin es el directorio de
+instalación del programa.
+</p>
+
+<p>
+Para disfrutar de Cygwin y acceder a todo el disco, debemos
+<a href="http://stackoverflow.com/questions/1494658/how-can-i-change-my-cygwin-home-folder-after-installation%0A">modificar</a> la variable <code>db_home</code> en <code>/etc/nsswitch.conf</code> con nuestro editor <code>nano</code>:
+</p>
+
+<pre class="example">
+nano /etc/nsswitch.conf
+</pre>
+
+<p>
+Y escribimos:
+</p>
+<pre class="example">
+db_home: windows
+</pre>
+
+<p>
+O de forma equivalente:
+</p>
+
+<pre class="example">
+db_home: /%H
+</pre>
+
+<p>
+Tened en cuenta que en los archivos de configuración, la almohadilla <code>#</code> que aparece al principio de línea
+significa que la línea está comentada, es decir, que no la va a leer el programa que quiera leerla para hacer
+algo.
+</p>
+
+<p>
+Así que os pueden quedar varias líneas comentadas, incluso contad lo que habéis hecho en una línea comentada,
+para que cuando volváis a este archivo sepáis por qué esta línea es así:
+</p>
+
+<pre class="example">
+Ahora modifico la línea de la variable db_home
+</pre>
+
+<p>
+De esta última manera puedes interpretar el esquema y hacer que estén
+dentro del subdirectorio <code>cygwin</code>, por ejemplo:
+</p>
+
+<pre class="example">
+db_home: /%H/cygwin
+</pre>
+
+<p>
+Si a alguien no le funciona, puede proponer este otro método que proponen en <a href="http://stackoverflow.com/questions/225764/safely-change-home-directory">página</a>:
+</p>
+
+<pre class="example">
+mkpasswd -l -p "$(cygpath -H)" &gt; /etc/passwd
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org76018ba" class="outline-4">
+<h4 id="org76018ba">Comandos de Cygwin en la consola de Windows</h4>
+<div class="outline-text-4" id="text-org76018ba">
+<p>
+Esto sería un plus, no lo vimos pero podría hacerse según este <a href="https://www.howtogeek.com/howto/41382/how-to-use-linux-commands-in-windows-with-cygwin/%0A">blog</a>.
+</p>
+
+<p>
+En las propiedades del sistema, en la columna izquierda pincha en propiedades de sistema avanzadas para abrir la ventana de propiedades.
+</p>
+
+<p>
+En la pestaña de avanzados, pincha en las variables de entorno abajo. Busca la variable <code>path</code> y pincha en editar. Al final, añadimos la localización de Cygwin:
+</p>
+
+<pre class="example">
+
+;C:\Cygwin\bin
+
+</pre>
+
+<p>
+Nótese el punto y coma para separarlo de los valores anteriores.
+</p>
+
+<p>
+Pincha en OK y cierra la ventana. En el prompt de windows ya puedes ejecutar comandos UNIX.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3c25741" class="outline-3">
+<h3 id="org3c25741">Configuración de editor por defecto</h3>
+<div class="outline-text-3" id="text-org3c25741">
+<p>
+Cuando editamos un archivo de configuración, por ejemplo de <code>git</code>,
+el programa que utiliza por defecto es <code>vi</code>, complicado pero no
+imposible (manual en <a href="https://www.cs.colostate.edu/helpdocs/vi.html">inglés</a> y <a href="http://www.dc.fi.udc.es/os/people/afyanez/info-vi/">español</a>).
+</p>
+
+<p>
+Si os mola el rollo <code>vi</code>, sería mejor instalar <code>vim</code> (<a href="http://www.vim.org/docs.php">manual</a>). 
+</p>
+
+<p>
+En este caso vamos a modificarlo por <code>nano</code>. Para ello, editaremos desde el propio <code>nano</code> el archivo <code>.bashrc</code>
+del directorio de Cygwin o de la terminal y pondremos:
+</p>
+
+<pre class="example">
+export VISUAL=nano
+export EDITOR="$VISUAL"
+</pre>
+</div>
+</div>
+<div id="outline-container-org7113e52" class="outline-3">
+<h3 id="org7113e52">Algunas utilidades</h3>
+<div class="outline-text-3" id="text-org7113e52">
+</div>
+<div id="outline-container-org44e503d" class="outline-4">
+<h4 id="org44e503d">Interrumpir un comando</h4>
+<div class="outline-text-4" id="text-org44e503d">
+<p>
+Para interrrumpir el curso de un comando, se puede pulsar a la vez las
+teclas de <code>Ctrl</code> y <code>c</code>, es decir, <code>C-c</code>
+</p>
+<pre class="example">
+Ctrl + c
+</pre>
+
+<blockquote>
+<p>
+Para que esto no suponga un lío, lo habitual es presionar primero la
+letra <code>Ctrl</code> y, sin soltarla, pulsar <code>c</code> una vez. Luego soltar en
+orden inverso, primero la <code>c</code> y luego <code>Ctrl</code>.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orga0b972d" class="outline-4">
+<h4 id="orga0b972d">Limpiar la línea</h4>
+<div class="outline-text-4" id="text-orga0b972d">
+<p>
+Para limpiar la línea con algo que hemos escrito y podríamos borrar
+con la tecla de <code>Backspace</code>, podríamos pulsar la combinación de teclas
+<code>C-u</code>.
+</p>
+
+<pre class="example">
+Ctrl + u
+</pre>
+</div>
+</div>
+<div id="outline-container-org202f372" class="outline-4">
+<h4 id="org202f372">Salir de la terminal</h4>
+<div class="outline-text-4" id="text-org202f372">
+<p>
+Se puede salir de la sesión con el comando <code>exit</code> o con la combinación
+de teclas <code>C-d</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge2b491e" class="outline-4">
+<h4 id="orge2b491e">Aliases</h4>
+<div class="outline-text-4" id="text-orge2b491e">
+<p>
+Esto fue algo que citamos pero que no hicimos, si alguien quiere adaptarlo a sus necesidades, bienvenido sea.
+</p>
+
+<p>
+Se pueden hacer alias de los comandos e incluirlos en <code>.bashrc</code>. Por ejemplo:
+</p>
+
+<p>
+Un alias de <code>ls</code> para que siempre que lo invoquemos haga <code>ls -aF --color</code>:
+</p>
+
+<pre class="example">
+alias ls='ls -aF --color=always'
+</pre>
+
+<p>
+O un comando nuevo, por ejemplo <code>ll</code>, que lanza <code>ls -l</code>:
+</p>
+
+<pre class="example">
+alias ll='ls -l'
+</pre>
+
+<p>
+Podemos renombrar un comando, como por ejemplo que <code>grep</code> sea <code>search</code>:
+</p>
+
+<pre class="example">
+alias search=grep
+</pre>
+
+<p>
+O que al escribir <code>..</code> subamos un directorio con <code>cd ../</code>:
+</p>
+
+<pre class="example">
+alias ..='cd ../'
+</pre>
+
+<p>
+Pros y contras: hay personas que han personalizado tanto su consola que luego se van a otra y no se
+apañan. Conviene mantener un equilibrio entre ventajas e inconvenientes.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf31465a" class="outline-3">
+<h3 id="orgf31465a">Comandos como explorador de archivos</h3>
+<div class="outline-text-3" id="text-orgf31465a">
+</div>
+<div id="outline-container-org1bcbc92" class="outline-4">
+<h4 id="org1bcbc92">whoami</h4>
+<div class="outline-text-4" id="text-org1bcbc92">
+<p>
+Dice cuál es la cuenta de usuarix que estás empleando:
+</p>
+
+<pre class="example">
+whoami
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4a3a9c5" class="outline-4">
+<h4 id="org4a3a9c5">ls</h4>
+<div class="outline-text-4" id="text-org4a3a9c5">
+<p>
+Lista los archivos del punto en el que nos encontramos. Viene del
+inglés <i>list</i>. Si lo lanzamos sin argumentos, obtendremos un listado
+de los archivos y directorios que contiene ese directorio:
+</p>
+
+<pre class="example">
+ls
+</pre>
+
+<p>
+<code>ls [opciones]</code> lista los archivos del punto en el que nos encontramos.
+</p>
+<ul class="org-ul">
+<li><code>-a</code>, lista todos los archivos.</li>
+<li><code>-l</code>, lista en formato largo</li>
+</ul>
+
+<p>
+Para emplear argumentos, utilizaremos la estructura:
+</p>
+
+<pre class="example">
+ls -a
+</pre>
+
+<p>
+Si queremos saber la información de cada archivo y directorio, lo
+haremos con la opción <code>-l</code>:
+</p>
+
+<pre class="example">
+ls -l
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org29d0d2c" class="outline-4">
+<h4 id="org29d0d2c">pwd</h4>
+<div class="outline-text-4" id="text-org29d0d2c">
+<p>
+<code>pwd</code> es el acrónimo de <i>print working directory</i> o <i>muestra por
+pantalla el directorio de trabajo actual</i>.
+</p>
+
+<p>
+Es decir, imprime la <b>ruta absoluta</b> del sistema donde nos
+encontramos.
+</p>
+
+<pre class="example">
+pwd
+</pre>
+</div>
+</div>
+<div id="outline-container-orge849a5f" class="outline-4">
+<h4 id="orge849a5f">touch</h4>
+<div class="outline-text-4" id="text-orge849a5f">
+<p>
+Con <code>touch [archivo]</code>, creamos archivo vacío. Podemos usar una extensión o no, a bash le va a dar igual.
+</p>
+
+<pre class="example">
+touch archivo-para-borrar
+</pre>
+
+<p>
+Cuando estoy probando, pongo ese tipo de nombres para saber claramente que lo podría borrar ya que si no lo
+hago inmediatamente, igual más tarde no sé de qué iba.
+</p>
+
+
+<blockquote>
+<p>
+Ojo de no utilizar mayúsculas, caracteres que no sean ASCII &#x2013;los ingleses&#x2013; o espacios en blanco. Para
+separar palabras, podemos usar los guiones medios &#x2013;los prefiero a los bajos por cuestiones prácticas, aunque
+en realidad se han utilizado más los guiones bajos o <i>underscores</i>&#x2013; o la
+nomenclatura <a href="https://es.wikipedia.org/wiki/CamelCase">camelCase</a> (<i>lower</i>, para que la primera palabra empiece por minúsculas.)
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgd95fd14" class="outline-4">
+<h4 id="orgd95fd14">file</h4>
+<div class="outline-text-4" id="text-orgd95fd14">
+<p>
+Este comando permite saber qué tipo de formato es el de cualquier archivo.
+</p>
+
+<p>
+Así, si hacemos <code>file</code> sobre <code>archivo-para-borrar</code>, nos dirá:
+</p>
+
+<pre class="example">
+archivo-para-borrar: empty
+
+</pre>
+
+<p>
+<i>empty</i>, vacío.
+</p>
+
+<p>
+Si vemos un archivo con terminación txt o el <code>.bashrc</code> que hemos editado antes, dirá otra cosa:
+</p>
+
+<pre class="example">
+/home/flow/.bashrc: ASCII text
+
+</pre>
+</div>
+</div>
+<div id="outline-container-orgc972e51" class="outline-4">
+<h4 id="orgc972e51">mkdir</h4>
+<div class="outline-text-4" id="text-orgc972e51">
+<p>
+Para crear un directorio, usamos <code>mkdir</code>, <i>make directory</i>. Si luego queremos ir a este directorio, tendremos
+que usar el comando <code>cd</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8219798" class="outline-4">
+<h4 id="org8219798">cd</h4>
+<div class="outline-text-4" id="text-org8219798">
+<p>
+Con <code>cd</code> cambiamos de directorio. Viene de las iniciales del inglés
+ <i>change directory</i>. Si lo lanzamos sin argumentos vamos a nuestro espacio <i>home</i> definido en la variable de entorno <code>HOME</code>.
+</p>
+
+<p>
+Para cambiar de directorio, podemos elegir la ruta absoluta o la
+relativa.
+</p>
+
+<p>
+En sistemas *Unix, como son GNU/Linux o MacOSX, la ruta absoluta empieza por una barra <code>/</code> que sería la raíz
+del sistema, como el
+tronco del árbol de donde salen las ramas que son las distintas carpetas. Hay una jerarquía. Cada
+carpeta/directorio se separa con una barra <code>/</code>.
+</p>
+
+<p>
+En los sistemas Windows, la raíz es <code>C:\</code>. Las carpetas o directorios se separan con la barra invertida <code>\</code>.
+</p>
+
+<pre class="example">
+cd [ruta]
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><a id="org0289426"></a>Atajos de rutas<br />
+<div class="outline-text-5" id="text-org0289426">
+<ul class="org-ul">
+<li><code>cd</code>, vamos a la home del usuario</li>
+<li><code>cd .</code>, vamos al directorio en el que estamos.</li>
+<li><code>cd ..</code>, vamos al directorio superior</li>
+<li><code>cd ~</code>, vamos al directorio home del usuario.</li>
+<li><code>cd -</code>, vamos al directorio donde estábamos antes.</li>
+</ul>
+
+<p>
+Con esos atajos también podemos construir rutas, por ejemplo, con <code>cd
+ ~/Documentos</code> vamos al directorio Documentos del usuario con el que
+ estamos (en un ordenador con GNU/Linux)
+</p>
+
+<p>
+<code>cd [ruta]</code>, <i>change directory</i>, cambia al directorio elegido. Podemos escribir la ruta absoluta o bien con atajos:
+</p>
+<ul class="org-ul">
+<li><code>cd</code>, vamos a la home del usuario</li>
+<li><code>cd .</code>, vamos al directorio en el que estamos.</li>
+<li><code>cd ..</code>, vamos al directorio superior</li>
+<li><code>cd ~</code>, vamos al directorio home del usuario.</li>
+</ul>
+<p>
+Con esos atajos también podemos construir rutas, por ejemplo, con <code>cd ~/Documentos</code> vamos al directorio Documentos del usuario con el que estamos.
+</p>
+</div>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-org1fe0679" class="outline-4">
+<h4 id="org1fe0679">cp</h4>
+<div class="outline-text-4" id="text-org1fe0679">
+<p>
+Con <code>cp</code> copiamos archivos y/o directorios.
+</p>
+
+<pre class="example">
+cp [opciones] [origen] [destino]
+</pre>
+
+<ul class="org-ul">
+<li>Con <code>cp -r</code> copia los directorios recursivamente</li>
+<li>Si queremos copiar varios archivos/directorios en un directorio, el
+último que ponemos es el destino.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge6f33eb" class="outline-4">
+<h4 id="orge6f33eb">mv</h4>
+<div class="outline-text-4" id="text-orge6f33eb">
+<p>
+Con <code>mv</code> un archivo o directorio completo. También sirve para
+renombrar, aunque para esto tenemos a <code>rename</code>.
+</p>
+
+<pre class="example">
+mv [origen] [destino]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc8a5b26" class="outline-4">
+<h4 id="orgc8a5b26">env</h4>
+<div class="outline-text-4" id="text-orgc8a5b26">
+<p>
+Si queremos ver o saber qué variables maneja el sistema, podemos verlas con el comando <code>env</code>.
+</p>
+
+<pre class="example">
+env
+</pre>
+
+<p>
+Para ver una en concreto, usamos <code>echo</code>, que es un comando que nos devuelve lo que le pidamos. En este caso,
+le pedimos que nos devuelva una variable, por ejemplo, de configuración del aspecto del prompt de la línea de
+comandos:
+</p>
+
+<pre class="example">
+echo $PS1
+</pre>
+
+<p>
+Con el carácter reservado de bash <code>$</code> llamamos a una variable y con <code>PS1</code> a esa en concreto.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd6e52c6" class="outline-3">
+<h3 id="orgd6e52c6">Miscelánea</h3>
+<div class="outline-text-3" id="text-orgd6e52c6">
+</div>
+<div id="outline-container-org9d70c17" class="outline-4">
+<h4 id="org9d70c17">Buscadores</h4>
+<div class="outline-text-4" id="text-org9d70c17">
+<ul class="org-ul">
+<li>duckduckgo.com</li>
+<li>startpage.com</li>
+<li>searx, <a href="https://asciimoo.github.io/searx/">https://asciimoo.github.io/searx/</a></li>
+<li>uno francés.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org66da2de" class="outline-2">
+<h2 id="org66da2de">Segunda sesión</h2>
+<div class="outline-text-2" id="text-org66da2de">
+</div>
+<div id="outline-container-orgcc11618" class="outline-3">
+<h3 id="orgcc11618">Repaso de la primera sesión</h3>
+<div class="outline-text-3" id="text-orgcc11618">
+<p>
+Viene una persona que no vino el primer día y además contamos con un posible nuevo compañero.
+</p>
+</div>
+</div>
+<div id="outline-container-org92f2262" class="outline-3">
+<h3 id="org92f2262">Operadores de búsqueda</h3>
+<div class="outline-text-3" id="text-org92f2262">
+<p>
+Hemos tocado los operadores de búsqueda de soslayo, pero os invito a explorarlos más para ser más eficaces en
+el apartado <a href="https://github.com/flowsta/scraping#orgheadline23">la Web como fuente de datos</a> del <a href="https://github.com/flowsta/scraping">recopilatorio de herramientas de scraping</a> que tengo en Github.
+</p>
+
+<p>
+El ejemplo que vimos fue:
+</p>
+<pre class="example">
+site:blog.infotics.es editor de textos
+
+</pre>
+
+<p>
+Donde hago una búsqueda sobre mi blog para encontrar un artículo en el que hablo sobre <i>editores de texto</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-orge3f33c2" class="outline-3">
+<h3 id="orge3f33c2">Editor de textos</h3>
+<div class="outline-text-3" id="text-orge3f33c2">
+<p>
+Del artículo que os señalo, resumo las características que debe tener cualquier buen editor de texto:
+</p>
+
+<ul class="org-ul">
+<li>Herramienta de búsqueda y reemplazo de texto</li>
+<li>Que se combina con el uso de expresiones regulares</li>
+<li>Indentado de texto, para los bloques de código o el código.</li>
+<li>Resaltado de sintaxis, para colorear las distintas partes del documento según de qué se trata.</li>
+<li>Modo esquema, para visualizar rápidamente documentos complejos.</li>
+<li>Ejecución de código, para que los bloques de código produzcan texto.</li>
+</ul>
+
+<p>
+Aunque vimos varias opciones de editores GUI al final nos decidimos por <code>nano</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3d7ccea" class="outline-3">
+<h3 id="org3d7ccea">Repaso de la instalación de apt-cyg en Cygwin</h3>
+<div class="outline-text-3" id="text-org3d7ccea">
+<p>
+El software <a href="https://github.com/transcode-open/apt-cyg">apt-cyg</a> se utiliza en Cygwin para la gestión de paquetes -comandos, programas- en Cygwin.
+</p>
+
+<p>
+Para instalarlo, en la página web nos sugieren hacerlo copiando y pegando en la terminal -Cygwin- esta línea:
+</p>
+
+<pre class="example">
+lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg &gt; apt-cyg
+
+</pre>
+
+<p>
+Como muchxs no teníais <code>lynx</code>, lo descargamos corriendo de nuevo el instalador de Cygwin.
+</p>
+
+<p>
+En el caso de Mac, conviene instalar <a href="https://brew.sh/">brew</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf689bc4" class="outline-3">
+<h3 id="orgf689bc4">Brew</h3>
+<div class="outline-text-3" id="text-orgf689bc4">
+<p>
+Se puede descagar de <a href="https://brew.sh/">brew.sh</a>
+</p>
+<pre class="example">
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+</pre>
+
+<p>
+Entonces:
+</p>
+
+<pre class="example">
+brew install wget
+</pre>
+
+<p>
+O bien:
+</p>
+<pre class="example">
+brew cask install firefox
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4d1dcf9" class="outline-3">
+<h3 id="org4d1dcf9">lynx</h3>
+<div class="outline-text-3" id="text-org4d1dcf9">
+<p>
+Volviendo al manual de Cywgin, ejecutamos en la consola la siguiente línea
+</p>
+
+<pre class="example">
+lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg &gt; apt-cyg
+
+</pre>
+<p>
+Luego le damos a <code>Enter</code>.
+</p>
+
+<p>
+Esta línea hace varias cosas:
+</p>
+<ul class="org-ul">
+<li>Utiliza el comando <code>lynx</code>, que es un navegador CLI, para ver la página del código de apt-cyg.</li>
+<li>Con la opción -source, lo que hace es mostrar el código fuente de la página, por lo que así tenemos lo que
+queremos, el código del comando <code>apt-cyg</code>.</li>
+<li>Luego emplea el operador de bash <code>&gt;</code> (luego explicamos esto más) para enviar ese código a un archivo que
+creamos en ese momento que llamaremos <code>apt-cyg</code>.</li>
+</ul>
+
+<p>
+A continuación, instalamos en nuestro cygwin ese comando en el directorio/carpeta donde se encuentran los
+programas &#x2013;los binarios, los ejecutables&#x2013;, que es <code>/bin</code>:
+</p>
+
+<pre class="example">
+install apt-cyg /bin
+</pre>
+
+<p>
+Cerramos Cywgin y volvemos a abrirlo.
+</p>
+
+<p>
+A partir de aquí, ya podremos utilizar <code>apt-cyg</code> para instalar comandos.
+</p>
+
+<p>
+Una de las primeras cosas que hicimos fue modificar el archivo <code>/etc/nsswitch.conf</code> para que la <code>home</code> de
+Cywgin fuera la de Windows y no la propia de Cygwin.
+</p>
+
+<p>
+Para ello, usamos <code>nano</code>:
+</p>
+
+<pre class="example">
+nano /etc/nsswitch.conf
+</pre>
+
+<p>
+Y vemos esto:
+</p>
+
+<pre class="example">
+# /etc/nsswitch.conf
+#
+#    This file is read once by the first process in a Cygwin process tree.
+#    To pick up changes, restart all Cygwin processes.  For a description
+#    see https://cygwin.com/cygwin-ug-net/ntsec.html#ntsec-mapping-nsswitch
+#
+# Defaults:
+# passwd:   files db
+# group:    files db
+# db_enum:  cache builtin
+# db_home:  /home/%U
+# db_shell: /bin/bash
+# db_gecos: &lt;empty&gt;
+db_home: windows
+db_home:  /%H
+
+</pre>
+
+<p>
+En este archivo, he añadido esas dos líneas al final. Nótese que no están con una almohadilla al principio de
+línea, lo que indica que no están comentadas.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgafdb041" class="outline-3">
+<h3 id="orgafdb041">Grupo de Telegram</h3>
+<div class="outline-text-3" id="text-orgafdb041">
+<p>
+Hemos creado un grupo de Telegram para intercambiar este tipo de archivos y ser más operativos en clase.
+</p>
+
+<p>
+Poco a poco ha ido añadiéndose todo el mundo.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaabe4d0" class="outline-3">
+<h3 id="orgaabe4d0">Símbolos escapados</h3>
+<div class="outline-text-3" id="text-orgaabe4d0">
+<p>
+Los símbolos o caracteres que se escapan son aquellos que utiliza el lenguaje que estemos utilizando para sus
+propias órdenes.
+</p>
+
+<p>
+Por ejemplo, en HTML hay que escapar el carácter <code>&amp;</code> ya que es el carácter con el que se nombran las entidades HTML:
+</p>
+
+<pre class="example">
+&amp;amp;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8cb7bbf" class="outline-3">
+<h3 id="org8cb7bbf">API de BASH</h3>
+<div class="outline-text-3" id="text-org8cb7bbf">
+<p>
+BASH tiene una API muy sencilla y muy potente. Una API (<i>Application Programming Interface</i> o interfaz de
+  programación de la aplicación) es el código para comunicarnos con un programa determinado. En este caso, con
+  BASH.
+</p>
+
+<p>
+Cuando ejecutas un comando en la <i>shell</i>, se producen tres procesos:
+</p>
+
+<ul class="org-ul">
+<li>La salida del comando, que es lo que devueve el comando, normalmente en la terminal,
+llamada <i>STDOUT</i> por <i>STandarD OUTput</i> o salida estándar.</li>
+<li>La entrada de datos, argumentos o comandos es lo que se conoce como
+<i>STDIN</i> por <i>STandarD INput</i>.</li>
+<li>La salida de errores, si ha dado errores, que se llama <i>STDERR</i> por <i>STandarD Error</i> o error estándar.</li>
+</ul>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="https://upload.wikimedia.org/wikipedia/commons/7/70/Stdstreams-notitle.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+<p><span class="figure-number">Figure 1: </span>Diagrama de funcionamiento de STDIN, STDOUT y STERR. Fuente: Wikipedia: Esquema de POSIX y C de entrada estándar. Licencia Dominio Público.</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8ace59d" class="outline-3">
+<h3 id="org8ace59d">Atajos de Bash</h3>
+<div class="outline-text-3" id="text-org8ace59d">
+<table id="org397a98b" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Comando</th>
+<th scope="col" class="org-left">Descripción</th>
+<th scope="col" class="org-left">Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-d o exit</td>
+<td class="org-left">Cierra la ventana</td>
+<td class="org-left">salida</td>
+</tr>
+
+<tr>
+<td class="org-left">cd</td>
+<td class="org-left">Cambia el directorio</td>
+<td class="org-left">cd test</td>
+</tr>
+
+<tr>
+<td class="org-left">pwd</td>
+<td class="org-left">Mostrar el directorio actual</td>
+<td class="org-left">cd (Windows) o pwd (Mac OS / Linux)</td>
+</tr>
+
+<tr>
+<td class="org-left">ls</td>
+<td class="org-left">Lista directorios/archivos</td>
+<td class="org-left">ls .</td>
+</tr>
+
+<tr>
+<td class="org-left">cp</td>
+<td class="org-left">Copia de archivos</td>
+<td class="org-left">cp ruta-origen ruta-destino</td>
+</tr>
+
+<tr>
+<td class="org-left">mv</td>
+<td class="org-left">Mueve archivos</td>
+<td class="org-left">mv ruta-origen c:\test\test.txt c:\windows\test.txt</td>
+</tr>
+
+<tr>
+<td class="org-left">mkdir</td>
+<td class="org-left">Crea un nuevo directorio</td>
+<td class="org-left">mkdir testdirectory</td>
+</tr>
+
+<tr>
+<td class="org-left">rm</td>
+<td class="org-left">Eliminar un archivo</td>
+<td class="org-left">rm ruta-archivo</td>
+</tr>
+
+<tr>
+<td class="org-left">rm -rf</td>
+<td class="org-left">Fuerza la eliminación de un Directorio de forma recursiva</td>
+<td class="org-left">rm -r ruta-directorio</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgee3b40b" class="outline-3">
+<h3 id="orgee3b40b">Comodines</h3>
+<div class="outline-text-3" id="text-orgee3b40b">
+<p>
+Los comodines permiten usar valores conocidos con valores
+comodín.
+</p>
+
+<p>
+Hay tres operadores:
+</p>
+<ul class="org-ul">
+<li><code>*</code>, para cualquier número de caracteres.</li>
+<li><code>?</code>, para un carácter.</li>
+<li><code>[x-y]</code>, para un rango.</li>
+</ul>
+</div>
+
+<div id="outline-container-org80a7909" class="outline-4">
+<h4 id="org80a7909"><code>*</code></h4>
+<div class="outline-text-4" id="text-org80a7909">
+<p>
+Podemos listar todos los <code>csv</code> con el comodín <code>*</code>, ya que puede haber
+archivos con un carácter o varios.
+</p>
+
+<pre class="example">
+ls *.csv
+</pre>
+
+<p>
+De esta manera listaremos todos los archivos <code>csv</code>, pero también #+BEGIN_SRC sh :output org
+ ls *.csv
+</p>
+
+<p>
+#+END_SRC
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">black_corrupcion.csv</td>
+</tr>
+
+<tr>
+<td class="org-left">black-is-black_backup.csv</td>
+</tr>
+
+<tr>
+<td class="org-left">black-is-black.csv</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgd8364e2" class="outline-4">
+<h4 id="orgd8364e2"><code>?</code></h4>
+<div class="outline-text-4" id="text-orgd8364e2">
+<p>
+El comodín <code>?</code> sirve para solo un carácter, cualesquiera. Por ejemplo,
+si tuviéramos archivos que solo difieren en un carácter, podemos
+listar ambos.
+</p>
+
+<p>
+Imaginemos que tenemos archivos <code>1.pdf</code>, <code>2.pdf</code>, <code>3.pdf</code>,
+etc. Podríamos listarlos con el comodín <code>?</code>:
+</p>
+
+<pre class="example">
+ls ?.pdf
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org56e883b" class="outline-4">
+<h4 id="org56e883b"><code>[]</code></h4>
+<div class="outline-text-4" id="text-org56e883b">
+<p>
+El comodín corchetes cuadrados o <code>[]</code> permite buscar rangos de números
+o letras.
+</p>
+
+<p>
+si queremos buscar en el <code>csv</code> tanto <code>CLESA</code> como <code>BLESA</code>, podemos
+escribir:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">grep [B-C]LESA black-is-black.csv | wc -l
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf4be080" class="outline-3">
+<h3 id="orgf4be080">Proyectos interesantes referenciados</h3>
+<div class="outline-text-3" id="text-orgf4be080">
+<ul class="org-ul">
+<li>De <a href="https://www.civio.es">Civio</a>, España en llamas</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc15b82c" class="outline-3">
+<h3 id="orgc15b82c">Software hablado</h3>
+<div class="outline-text-3" id="text-orgc15b82c">
+<ul class="org-ul">
+<li>apt-cyg:</li>
+<li>trackula: <a href="https://addons.mozilla.org/en-US/firefox/addon/trackula/">https://addons.mozilla.org/en-US/firefox/addon/trackula/</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4c1e232" class="outline-3">
+<h3 id="org4c1e232">Fun-da-men-tal?</h3>
+<div class="outline-text-3" id="text-org4c1e232">
+</div>
+<div id="outline-container-org7826792" class="outline-4">
+<h4 id="org7826792">How (not) to be a danger to yourself and others using the command line:</h4>
+<div class="outline-text-4" id="text-org7826792">
+<p>
+Taller de la conferencia de periodismo de datos de EE.UU. (NICAR) de 2013:
+</p>
+<blockquote>
+<p>
+Harkening back to an earlier era of computing, the command line can easily seem like magic. Incantations are
+learned by rote, passed on by word of mouth from user to user, or written into arcane and impenetrable
+documentation. But live in fear no more! We will illuminate its nature and bind it to our use, navigating
+computers, manipulating files, and opening a comprehensible gateway to a world of pro-user and developer
+tools. Attendees should bring their laptops and be prepared to discover the Linux or Mac command line. (Note:
+Windows users may also learn transferable skills)
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org6805070" class="outline-4">
+<h4 id="org6805070">¿Puede  un periodista usar la línea de comandos?</h4>
+<div class="outline-text-4" id="text-org6805070">
+<p>
+Esta sesión comienza con la explicación de un conjunto muy básico de comandos con los que nos moveremos por el
+sistema de ficheros. Progresivamente iremos viendo cómo se pueden usar otros comandos para hacer el
+tratamiento de los datos que podemos tener en nuestro sistema de ficheros, y como podemos automatizar muchas
+de estas tareas, tan necesarias cuando uno tiene que hacer preprocesamiento de datos.
+</p>
+</div>
+</div>
+<div id="outline-container-orga1cbb3b" class="outline-4">
+<h4 id="orga1cbb3b">Introducción a la línea de comandos</h4>
+<div class="outline-text-4" id="text-orga1cbb3b">
+<p>
+Introducción a la línea de comandos de Django Girls. Django es un framework para el desarrollo web en
+Python. Vaya, ¿si se sabe de Python para qué se necesita Bash? Precisamente.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0cacf34" class="outline-2">
+<h2 id="org0cacf34">Tercera sesión</h2>
+<div class="outline-text-2" id="text-org0cacf34">
+</div>
+<div id="outline-container-org2f92f10" class="outline-3">
+<h3 id="org2f92f10">URL y más allá</h3>
+<div class="outline-text-3" id="text-org2f92f10">
+<p>
+Si queremos interactuar con una web, hacer una página, hacer web scraping, en definitiva, entender algo de la
+web, debemos saber qué es una URL.
+</p>
+
+<p>
+Qué es una URL&#x2026; el acrónimo significa Uniform Resource Locator, localizador de recursos uniformes. Esto ya
+da algunas pistas:
+</p>
+<ul class="org-ul">
+<li>Es un localizador, luego seguirá alguna nomenclatura.</li>
+<li>Localiza recursos, que es como se denominan genéricamente los archivos, documentos, páginas web, direcciones
+de correo electrónico o cualquier cosa electrónica: recursos.</li>
+<li>Es uniforme, luego un localizador no choca con otros.</li>
+</ul>
+
+<p>
+Veamos un ejemplo de URL, la web del diario británico <a href="https://www.theguardian.com/international%0A">The Guardian</a>:
+</p>
+
+<pre class="example">
+https://www.theguardian.com/international
+
+</pre>
+
+<p>
+Esta dirección URL se descompone en:
+</p>
+<ul class="org-ul">
+<li>Protocolo: https</li>
+<li>Separación protocolo-dominio: ://</li>
+<li>Dominio completo: www.theguardian.com
+<ul class="org-ul">
+<li>dominio mínimo: theguardian.com
+<ul class="org-ul">
+<li>.com: TLD</li>
+<li>theguardian: el proyecto</li>
+</ul></li>
+<li>www: subdominio</li>
+</ul></li>
+<li>/international : estructura de ficheros/contenidos</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org013af20" class="outline-3">
+<h3 id="org013af20">Repaso de atajos</h3>
+<div class="outline-text-3" id="text-org013af20">
+</div>
+<div id="outline-container-orga92a4b7" class="outline-4">
+<h4 id="orga92a4b7">Ordenador</h4>
+<div class="outline-text-4" id="text-orga92a4b7">
+<p>
+Aunque utilizamos teclados QWERTY &#x2013;por la disposición de las teclas&#x2013;, cada ordenador dispone otras teclas o
+caracteres en uno u otro lugar. O viceversa, aunque hay diferencias, hay un gran teclado común que podemos
+explotar si sabemos algo de mecanografía e incorporamos algunas otras teclas/caracteres.
+</p>
+</div>
+</div>
+<div id="outline-container-org9d73519" class="outline-4">
+<h4 id="org9d73519">Sistema operativo</h4>
+<div class="outline-text-4" id="text-org9d73519">
+<p>
+Cada sistema operativo e incluso cada versión del sistema utiliza unas u otras formas de acceder al
+contenido. Debemos familiarizarnos con ello para mejorar la productividad.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb570926" class="outline-4">
+<h4 id="orgb570926">Aplicaciones</h4>
+<div class="outline-text-4" id="text-orgb570926">
+<p>
+También las aplicaciones tienen sus particularidades, pero hay unas normas de accesibilidad a las aplicaciones
+que sirven para que nos apoyemos en el teclado como vehículo de nuestra interacción con el
+ordenador/aplicación. Explotar esta relación hará que seamos más eficientes.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb1d6bd1" class="outline-4">
+<h4 id="orgb1d6bd1">Navegador</h4>
+<div class="outline-text-4" id="text-orgb1d6bd1">
+<p>
+Como cualquier otra aplicación, se puede aprovechar esa accesibilidad. Pero además, traerá sus propios atajos
+o shortcuts. Una búsqueda apropiada en nuestro buscador favorito nos devolverá por seguro alguna referencia
+interesante.
+Merece la pena que empleemos algo de tiempo para con las aplicaciones que más a menudo utilizamos.
+</p>
+</div>
+</div>
+<div id="outline-container-orge62432d" class="outline-4">
+<h4 id="orge62432d">Web</h4>
+<div class="outline-text-4" id="text-orge62432d">
+<p>
+El contenido web en sí también cumple unos parámetros de accesibilidad, aunque en este caso es probablemente
+en el que menos se cumplen, en general. Una buena forma de probarlo es utilizar el tabulador para pasar del
+texto de un
+enlace a otro.
+Si la página está bien realizada, tendrá teclas de acceso al contenido o <i>accesskeys</i>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7444139" class="outline-3">
+<h3 id="org7444139">Open Refine</h3>
+<div class="outline-text-3" id="text-org7444139">
+<p>
+Open Refine lo llaman la navaja suiza del análisis de datos. Nos permite explorar de una forma muy sencilla
+grandes archivos CSV, pero también realizar transformaciones de datos o incluso de formatos.
+</p>
+</div>
+
+<div id="outline-container-org32368ea" class="outline-4">
+<h4 id="org32368ea">Descarga de Open Refine:</h4>
+<div class="outline-text-4" id="text-org32368ea">
+<p>
+<a href="http://openrefine.org/download.html">http://openrefine.org/download.html</a>
+</p>
+
+<p>
+En esta sesión no pudimos avanzar por las distintas situaciones de cada uno de los equipos. Fundamentalmente:
+</p>
+<ul class="org-ul">
+<li>Actualización de la máquina virtual de Java.</li>
+<li>Aceptación del uso de aplicaciones "no seguras" por parte de MacOSX.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org08147ba" class="outline-4">
+<h4 id="org08147ba">Manual de Open Refine:</h4>
+<div class="outline-text-4" id="text-org08147ba">
+<p>
+Para quienes lo vayan consiguiendo, les recomiendo echar un vistazo a mis <a href="https://github.com/flowsta/refine">apuntes sobre Refine</a>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga8bec2b" class="outline-3">
+<h3 id="orga8bec2b">Personalización de la línea de comandos</h3>
+<div class="outline-text-3" id="text-orga8bec2b">
+<p>
+Esto no lo pudimos realizar juntxs pero os dejo este <a href="https://www.linux.com/learn/how-make-fancy-and-useful-bash-prompt-linux%0A">enlace</a> por si queréis probarlo.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org72fc565" class="outline-3">
+<h3 id="org72fc565">Análisis de datos</h3>
+<div class="outline-text-3" id="text-org72fc565">
+<p>
+Hemos empezado bajándonos este archivo de <a href="https://datos.madrid.es/portal/site/egob/menuitem.ac61933d6ee3c31cae77ae7784f1a5a0/?vgnextoid=00149033f2201410VgnVCM100000171f5a0aRCRD&amp;format=csv&amp;file=0&amp;filename=200967-0-mercados&amp;charset=ISO-8859-1&amp;mgmtid=b9f7530479243410VgnVCM1000000b205a0aRCRD&amp;preview=full%0A">mercados de barrio</a> del <a href="https://datos.madrid.es">portal de datos del ayuntamiento de Madrid</a>. Pero como no era muy grande, hemos pasado al tutorial de Óscar Corcho <a href="https://www.localidata.com/puede-un-periodista-usar-la-linea-de-comandos-jpd14/">¿Puede un periodista usar la línea de comandos?</a>, donde compartía un dataset de comercios de Madrid.
+</p>
+
+<p>
+Como no lo encuentro en su lugar de origen, en el <a href="https://datos.madrid.es">portal de datos abiertos del Ayuntamiento de Madrid</a>, tiro de biblioteca y lo comparto por <a href="https://nube.egelesta.net/s/PnCwxyeG8rr23oL">aquí</a>, pero lo vamos a bajar con <code>curl</code>:
+</p>
+
+
+<pre class="example">
+curl -L https://nube.egelesta.net/s/PnCwxyeG8rr23oL/download &gt; data/comercios-madrid.csv
+
+</pre>
+
+<p>
+Lo ponemos en la carpeta <code>data</code>
+</p>
+
+<p>
+He encontrado este otro archivo <a href="https://datos.madrid.es/FWProjects/egob/contenidos/datasets/ficheros/Comercio_CensoLocalesActividades/ConceptosFundamentalesCLA.pdf">PDF</a> que sobre los microdatos de este archivo.
+</p>
+
+<p>
+Para descargarlo, podemos emplear curl:
+</p>
+
+<pre class="example">
+curl -O https://datos.madrid.es/FWProjects/egob/contenidos/datasets/ficheros/Comercio_CensoLocalesActividades/ConceptosFundamentalesCLA.pdf
+
+</pre>
+
+<p>
+Antes de pasar a las operaciones básicas de de exploración del archivo, detengámonos en lo que hemos hecho y tres comandos con los
+que nos podemos descargar archivos:
+</p>
+</div>
+</div>
+<div id="outline-container-orgb6b12c2" class="outline-3">
+<h3 id="orgb6b12c2">Descarga de archivos</h3>
+<div class="outline-text-3" id="text-orgb6b12c2">
+<p>
+En la anterior sesión usamos <code>lynx</code> para descargarnos el programa <code>apt-cyg</code>. En esta ocasión vamos v ver otros
+dos comandos, hechos más a propósito para esa tarea:
+</p>
+</div>
+
+<div id="outline-container-org2e95844" class="outline-4">
+<h4 id="org2e95844">curl</h4>
+<div class="outline-text-4" id="text-org2e95844">
+<p>
+<code>curl</code> es una herramienta para transferir datos de o hacia un servidor a través de uno de los protocolos
+soportados. Nos interesa porque soporta tanto <code>HTTP</code> como <code>HTTPS</code>. Para descargarnos un archivo sería:
+</p>
+
+
+<pre class="example">
+curl https://nube.egelesta.net/s/PnCwxyeG8rr23oL/download &gt; data/comercios-madrid.csv
+
+</pre>
+
+<p>
+De esta manera, redirigimos la salida estándar al archivo deseado. También podríamos haberlo hecho con <code>curl -o nombre-archivo url</code>:
+</p>
+
+<pre class="example">
+curl -o data/comercios-madrid.csv https://nube.egelesta.net/s/PnCwxyeG8rr23oL/download
+</pre>
+
+<p>
+O <code>-O</code> si no quisiéramos cambiar su nombre:
+</p>
+
+<pre class="example">
+curl -O https://nube.egelesta.net/s/PnCwxyeG8rr23oL/download
+</pre>
+
+
+<p>
+Si quisiéramos descargar de una sola vez varios archivos, podríamos poner sus URLs una tras otra después de la
+opción <code>-O</code> antes de cada URL:
+</p>
+
+<pre class="example">
+curl -O url1 -O url2 -O url3
+</pre>
+
+<p>
+Otras dos opciones interesantes son, la de <code>-C</code> para continuar una descarga que se paró, y la de <code>-z</code> para
+descargar de nuevo un archivo si se ha modificado en una fecha dada.
+</p>
+
+<pre class="example">
+curl -z -21-dic-11
+</pre>
+</div>
+</div>
+<div id="outline-container-org70f071b" class="outline-4">
+<h4 id="org70f071b">wget</h4>
+<div class="outline-text-4" id="text-org70f071b">
+<p>
+<code>wget</code> es otro programa creado para descargar archivos. La estructura sería la siguiente:
+</p>
+
+<pre class="example">
+wget -O ruta-local URL
+</pre>
+
+<p>
+Con la opción <code>-O</code> damos nombre al archivo que descargamos.
+</p>
+</div>
+
+<ul class="org-ul">
+<li><a id="orgac2d994"></a>Descargar una lista de archivos<br />
+<div class="outline-text-5" id="text-orgac2d994">
+<p>
+Una opción muy interesante con wget es la opción <code>-i</code>, que permite descargar archivos que estén en una lista
+en un archivo de texto. Por ejemplo, los cuatro archivos CSV de <a href="https://datos.madrid.es/sites/v/index.jsp?vgnextoid=23160329ff639410VgnVCM2000000c205a0aRCRD&amp;vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD">locales de Madrid</a> son:
+</p>
+
+<pre class="example">
+$ cat descarga.txt 
+https://datos.madrid.es/egob/catalogo/209548-148-censo-locales-historico.csv
+https://datos.madrid.es/egob/catalogo/209548-151-censo-locales-historico.csv
+https://datos.madrid.es/egob/catalogo/209548-149-censo-locales-historico.csv
+https://datos.madrid.es/egob/catalogo/209548-150-censo-locales-historico.csv
+
+</pre>
+</div>
+</li>
+
+<li><a id="orge26bf30"></a>De forma recursiva<br />
+<div class="outline-text-5" id="text-orge26bf30">
+<p>
+Con la opción <code>-r</code> descarga un sitio de forma recursiva y crea los directorios tal como están:
+</p>
+
+<pre class="example">
+wget -r url
+</pre>
+</div>
+</li>
+
+<li><a id="orgc15a792"></a>De forma recursiva, a un solo archivo<br />
+<div class="outline-text-5" id="text-orgc15a792">
+<pre class="example">
+wget -nd -r url
+</pre>
+</div>
+</li>
+
+<li><a id="org34e5c27"></a>Todos los archivos de cierto tipo<br />
+<div class="outline-text-5" id="text-org34e5c27">
+<pre class="example">
+wget -A "*.xlsx" -r url
+</pre>
+</div>
+</li>
+
+<li><a id="org42e9926"></a>Ignorar los archivos de cierto tipo<br />
+<div class="outline-text-5" id="text-org42e9926">
+<pre class="example">
+wget -R "*.exe" -r
+</pre>
+</div>
+</li>
+
+<li><a id="orgfedc0dc"></a>Bibliografía<br />
+<div class="outline-text-5" id="text-orgfedc0dc">
+<ul class="org-ul">
+<li><a href="https://www.lifewire.com/uses-of-command-wget-2201085">https://www.lifewire.com/uses-of-command-wget-2201085</a></li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-orgce67fe3" class="outline-4">
+<h4 id="orgce67fe3">lynx</h4>
+<div class="outline-text-4" id="text-orgce67fe3">
+<p>
+Fue de los primeros comandos que conocimos al descargar desde Windows apt-cyg. Se trata de un navegador web en
+línea de comandos pero se puede utilizar para descargar el código fuente de una página, en estos casos un
+archivo csv, con la opción <code>--source</code>. Además, debemos llevar la salida estándar a un archivo para guardarlo.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">lynx --source https://nube.egelesta.net/s/PnCwxyeG8rr23oL/download &gt; nombre-archivo
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8e0b032" class="outline-3">
+<h3 id="org8e0b032">Exploración de archivos</h3>
+<div class="outline-text-3" id="text-org8e0b032">
+</div>
+<div id="outline-container-orgaf3c314" class="outline-4">
+<h4 id="orgaf3c314">wc</h4>
+<div class="outline-text-4" id="text-orgaf3c314">
+<p>
+Con <code>wc</code> (<i>word count</i>) podemos saber cuántas líneas tiene, cuántas palabras, cuántos caracteres o cuánto pesa:
+</p>
+
+<p>
+El esquema de uso sería:
+</p>
+<pre class="example">
+wc [opciones] archivo
+</pre>
+
+<p>
+Y las opciones son:
+</p>
+<ul class="org-ul">
+<li><code>-l</code>, cuenta líneas</li>
+<li><code>-c</code>, cuenta bytes</li>
+<li><code>-m</code>, cuenta carácteres</li>
+<li><code>-w</code>, cuenta palabras</li>
+</ul>
+
+<p>
+Me interesa saber cuántas líneas tiene:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">wc -l data/comercios-madrid.csv
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga7a6a56" class="outline-4">
+<h4 id="orga7a6a56">file</h4>
+<div class="outline-text-4" id="text-orga7a6a56">
+<p>
+Qué tipo de archivo es, para ello usamos <code>file</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">file data/comercios-madrid.csv
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ea125a" class="outline-4">
+<h4 id="org6ea125a">du</h4>
+<div class="outline-text-4" id="text-org6ea125a">
+<p>
+Para saber cuánto pesa de forma legible, usamos <code>du</code> con las opciones <code>-sh</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">du -sh data/comercios-madrid.csv
+
+</pre>
+</div>
+
+<p>
+Donde:
+</p>
+<ul class="org-ul">
+<li><code>-h</code>, pone los datos de forma comprensible.</li>
+<li><code>-s</code>, resume.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org179ee3c" class="outline-4">
+<h4 id="org179ee3c">head</h4>
+<div class="outline-text-4" id="text-org179ee3c">
+<p>
+Con <code>head</code> vemos la cabecera del archivo, las diez primeras líneas o filas:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">head -1 data/comercios-madrid.csv
+
+</pre>
+</div>
+
+<p>
+Aquí vemos algunas cosas:
+</p>
+<ul class="org-ul">
+<li>Que la primera línea es la cabecera del <code>*SV</code>, lo cual está bien.</li>
+<li>Que los valores de las celdas están entrecomillados para evitar problemas con lo que contienen.</li>
+<li>Que el separador o delimitador de cada valor es el punto y coma <code>;</code>.</li>
+<li>Que al final de línea hay un símbolo <code>^M</code>, que merece punto aparte.</li>
+<li>Que los caracteres con tildes no se ven correctamente, que merece punto aparte y que tiene que ver con la codificación del archivo que veíamos antes que era <code>ISO-8859-1</code> en vez de <code>ISO-8859-15</code> o <code>UTF-8</code>.</li>
+</ul>
+</div>
+<ul class="org-ul">
+<li><a id="org9fb31e8"></a>Un número de caracteres<br />
+<div class="outline-text-5" id="text-org9fb31e8">
+<p>
+Para ver un número de caracteres, se pone la opción <code>-c</code>. En este caso, 5 caracteres del archivo:
+</p>
+
+<pre class="example">
+head -c 5 archivo
+</pre>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org82eefe9" class="outline-4">
+<h4 id="org82eefe9">Qué es "^M"</h4>
+<div class="outline-text-4" id="text-org82eefe9">
+<p>
+Tal como cuentan en <a href="https://stackoverflow.com/questions/64749/m-character-at-end-of-lines">stackoverflow</a>, está causado por ser el carácter de final de línea de DOS/Windows. El comando <code>dos2unix</code> resuelve el tema:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">dos2unix data/comercios-madrid.csv
+
+</pre>
+</div>
+
+<p>
+Volvemos a pasar <code>head</code>, en esta ocasión solo con 3 líneas con la opción <code>-3</code> para ver si ha funcionado:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">head -1 data/comercios-madrid.csv
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdbfd970" class="outline-4">
+<h4 id="orgdbfd970">Codificación del archivo</h4>
+<div class="outline-text-4" id="text-orgdbfd970">
+<p>
+Dado que el archivo no es <code>ISO-8859-15</code> o <code>UTF-8</code> sino <code>ISO-8859-1</code>, no vemos los caracteres con tilde.
+</p>
+
+<p>
+Para ello, pasamos el archivo a <code>UTF-8</code> con <code>iconv</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">iconv -f ISO-8859-1 -t UTF-8 data/comercios-madrid.csv &gt; data/comercios-madrid-utf-8.csv
+
+</pre>
+</div>
+
+<p>
+Otra opción es hacerlo con <code>uconv</code>, que se encuentra en el paquete <code>ruby-uconv</code>, y que <a href="https://www.thoughtspot.com/blog/5-magic-fixes-most-common-csv-file-problems">Jon Avrach</a> señala como más potente que <code>iconv</code> para grandes archivos:
+</p>
+
+<pre class="example">
+uconv --from-code ISO_8859-1 --to-code UTF8
+</pre>
+<p>
+Veamos si ahora se ven esos caracteres:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">grep -rn Hosteler&#237;a data/comercios-madrid-utf-8.csv | wc -l
+
+</pre>
+</div>
+
+<p>
+Se encuentran 17016, luego se "ven" ;-)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org753e680" class="outline-4">
+<h4 id="org753e680">tail</h4>
+<div class="outline-text-4" id="text-org753e680">
+<p>
+Con <code>tail</code> vemos las diez últimas líneas/filas, a no ser que le pongamos la opción <code>-n</code>, donde <code>n</code> es el número de líneas/filas que podemos ver.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">tail -3 data/comercios-madrid-utf-8.csv
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79435c3" class="outline-4">
+<h4 id="org79435c3">split</h4>
+<div class="outline-text-4" id="text-org79435c3">
+<p>
+Una opción que planteaba Óscar era, dadas las dimensiones del archivo, partirlo en trozos con <code>split</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">split -l 2000 data/comercios-madrid-utf-8.csv
+
+</pre>
+</div>
+
+<p>
+Lo cual generará 76 ficheros, con nombres xaa, xab, etc., cada uno de ellos con 2000 líneas (excepto el último).
+</p>
+
+<p>
+Para moverlos todos a un directorio, primero lo creamos:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">mkdir data/comercios-split
+
+</pre>
+</div>
+
+<p>
+Y luego los movemos:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">mv x* data/comercios-split/.
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3136354" class="outline-4">
+<h4 id="org3136354">grep</h4>
+<div class="outline-text-4" id="text-org3136354">
+<p>
+Para hacer búsquedas sobre el texto.
+</p>
+
+<p>
+Imaginemos que queremos saber cuántos locales de <i>100 Montaditos</i> hay:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">grep -i <span style="color: #CC9393;">'montaditos'</span> data/comercios-madrid-datos-txt.csv |wc -l
+
+
+</pre>
+</div>
+
+<p>
+La opción <code>-i</code> de <code>grep</code> es para indicarle que no discrimine por mayúsculas o minúsculas, que encuentre todas.
+</p>
+
+<p>
+De estos 47 locales en Madrid capital, nos gustaría saber cuántos están en el distrito centro:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">grep -E <span style="color: #CC9393;">'MONTADITOS'</span> data/comercios-madrid-datos-txt.csv | grep -Ec <span style="color: #CC9393;">'CENTRO'</span>
+</pre>
+</div>
+
+<p>
+Un total de 14 locales, casi un tercio del total.
+</p>
+
+<pre class="example">
+14
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3d08c01" class="outline-4">
+<h4 id="org3d08c01">sed</h4>
+<div class="outline-text-4" id="text-org3d08c01">
+<div class="org-src-container">
+<pre class="src src-sh">sed -n <span style="color: #CC9393;">'5p'</span> ruta-archivo
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbb38fed" class="outline-4">
+<h4 id="orgbb38fed">Cuántas columnas tiene</h4>
+<div class="outline-text-4" id="text-orgbb38fed">
+<p>
+Para extraer otras columnas, podemos ayudarno si sabemos cuántas columnas tiene. Para ello, dado que sabemos que utiliza el delimitador <code>;</code>, podemos <a href="https://stackoverflow.com/questions/1603566/count-occurrences-of-a-char-in-plain-text-file">contar cuántas veces aparece en una línea</a>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">head -1 data/comercios-madrid-utf-8.csv | fgrep -o <span style="color: #CC9393;">";"</span> | wc -l
+
+</pre>
+</div>
+
+<p>
+La opción <code>-o</code> de <code>fgrep</code> busca solo esa cadena.
+</p>
+
+<p>
+En esta <a href="https://linuxconfig.org/how-to-count-number-of-columns-in-csv-file-using-bash-shell">web</a>, he encontrado esta opción con <code>sed</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">head -1 data/comercios-madrid-utf-8.csv | sed <span style="color: #CC9393;">'s/[^;]//g'</span> | wc -c
+</pre>
+</div>
+
+<p>
+Utiliza <code>sed</code> para borrar de la primera línea todo menos los punto y coma, y luego los cuenta. Más adelante vemos un poco de <code>sed</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org740a143" class="outline-4">
+<h4 id="org740a143">cut</h4>
+<div class="outline-text-4" id="text-org740a143">
+<p>
+Con cut podemos seleccionar columnas del archivo. Imaginad que nos interesan las columnas -los campos- número 3, de distrito; 5, de barrio; 32, de rótulo; 34, de sección; 36, de división; y 38, de epígrafe:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">cut -f 3,5,32,34,36,38 -d <span style="color: #CC9393;">';'</span> data/comercios-madrid-utf-8.csv &gt; data/comercios-madrid-datos-txt.csv
+
+</pre>
+</div>
+
+<div class="NOTES">
+<p>
+Si os  devuelve el error: <code>illegal byte sequence</code>, como ha ocurrido en varios MacOSX, se deben ejecutar estos comandos, primero uno y luego el otro:
+</p>
+
+<p>
+<code>export LC_CTYPE=C</code>
+<code>export LANG=C</code>
+</p>
+
+<p>
+Y volver a ejecutar <code>cut</code>.
+</p>
+
+</div>
+
+<p>
+Si hubiéramos querido campos seguidos, podríamos haber combinado las comas para separarlos con el guión para los rangos. Por ejemplo, si quisiéramos los campos del primero al quinto más el décimo:
+</p>
+<pre class="example">
+cut -f 1-5,10 -d ';' data/comercios-madrid-utf-8.csv &gt; data/comercios-1-5-10.csv
+</pre>
+
+<p>
+Se pueden seleccionar todos los campos menos uno, dos y/o un rango:
+</p>
+
+<pre class="example">
+cut -d ';' --complement -s -f 7-38
+</pre>
+<p>
+De esta forma, no tendremos los campos del 7 al 38.
+</p>
+
+<p>
+También se puede cambiar el delimitador con la opción <code>--output-delimeter</code>:
+</p>
+
+<pre class="example">
+cut -d ; --complement -s -f 3-5,6-33 --output-delimeter ',' data/comercios-madrid-utf-8.csv
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfa53d24" class="outline-3">
+<h3 id="orgfa53d24">Flujo de texto</h3>
+<div class="outline-text-3" id="text-orgfa53d24">
+</div>
+<div id="outline-container-org118e1ba" class="outline-4">
+<h4 id="org118e1ba">sed</h4>
+<div class="outline-text-4" id="text-org118e1ba">
+<p>
+Se utiliza para modificar el texto.
+</p>
+</div>
+<ul class="org-ul">
+<li><a id="org07fad6e"></a>Buscar y reemplazar<br />
+<div class="outline-text-5" id="text-org07fad6e">
+<p>
+Por ejemplo, de <code>100 MONTADITOS</code> quiero convertir <code>100</code> en <code>CIEN</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sed s/100/CIEN/ ComerciosMadrid.csv 
+
+</pre>
+</div>
+
+<p>
+Si hay algún carácter en blanco y lo tenemos identificado, como en el caso de "CIEN MONTADITOS ":
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sed s/100 MONTADITOS/CIEN MONTADITOS/ ComerciosMadrid.csv 
+
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org5712cf2"></a>Eliminar línea<br />
+<div class="outline-text-5" id="text-org5712cf2">
+<p>
+Se puede borrar las líneas que contengan algo:
+</p>
+
+<pre class="example">
+sed /patrón/d archivo
+</pre>
+</div>
+</li>
+<li><a id="orgafe91bb"></a>Para actualizarlo<br />
+<div class="outline-text-5" id="text-orgafe91bb">
+<p>
+Con la opción <code>-i</code>:
+</p>
+
+<pre class="example">
+sed -i /patrón/d archivo
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgccd4597" class="outline-2">
+<h2 id="orgccd4597">Cuarto día</h2>
+<div class="outline-text-2" id="text-orgccd4597">
+<ul class="org-ul">
+<li>Repaso: ¿lo dejamos para el jueves?</li>
+<li>Open Refine: ¿lo dejamos para el jueves?</li>
+<li>Github: crear nuestro primer repositorio.</li>
+<li>Web scraping: si da tiempo, empezamos.</li>
+</ul>
+</div>
+<div id="outline-container-org8cd8fe0" class="outline-3">
+<h3 id="org8cd8fe0">Dudas</h3>
+<div class="outline-text-3" id="text-org8cd8fe0">
+</div>
+<div id="outline-container-org6601c0e" class="outline-4">
+<h4 id="org6601c0e">Conocer distintos tipos de formatos de (intercambio de) datos</h4>
+<div class="outline-text-4" id="text-org6601c0e">
+<p>
+Fundamentalmente hay tres familias de formatos de datos, que también son formatos de intercambio de datos:
+</p>
+
+<ul class="org-ul">
+<li>*SV, valores separados por algo.</li>
+<li>*ML, lenguajes de marcado.</li>
+<li>JSON, JavaScript Object Notation, notación de objetos JavaScript.</li>
+</ul>
+</div>
+
+<ul class="org-ul">
+<li><a id="orgef8a20f"></a>*SV<br />
+<div class="outline-text-5" id="text-orgef8a20f">
+<p>
+El asterisco indica cualquier carácter mientras que <code>SV</code> significa <i>valores separados por</i>. Los caracteres más
+comunes son el tabulador y la coma, que hacen los formatos TSV (<i>tab separated values</i>, valores separados por
+tabulador) y CSV (<i>Comma Separated Values</i>, valores separados por comas.
+</p>
+
+<p>
+El formato CSV es el <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC4180</a> y el TSV <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">IANA-TSV</a> (según aparece en <a href="https://www.w3.org/2009/sparql/docs/csv-tsv-results/results-csv-tsv.html#bib-IANA-TSV">SPARQL 1.1</a>) están soportados por la mayoría
+de las aplicaciones. Son simples, pesan poco y facilitan el intercambio de datos.
+</p>
+
+<p>
+Son <a href="https://es.wikipedia.org/wiki/Valores_separados_por_comas">formatos abiertos aunque no estandarizados</a>. También presentan problemas con la codificación de caracteres
+y el indicador de fin de línea.
+</p>
+
+<p>
+La elección entre uno u otro, como cuentan en <a href="https://stackoverflow.com/posts/37198355/revisions">stackoverflow</a>, depende de los datos que haya. Básicamente, si los datos no contienen comas, CSV
+es una buena elección; en caso contrario y siempre que no tengan tabulación, TSV.
+</p>
+
+<p>
+En ambos casos vamos a encontrarnos con problemas con el delimitador de valor, por lo que si aparece habría
+que indicar que se trata de un carácter más y no un delimitador, lo cual se puede hacer de varias maneras:
+</p>
+<ul class="org-ul">
+<li>Quitándolos, lo cual no es muy práctico.</li>
+<li>Escapándolos, lo cual es tedioso.</li>
+<li>O la solución más extendida, que es que cada valor se entrecomilla, por lo que se trata como literales. Lo
+cual puede ser controvertido si hay valores que presentan comillas a su vez</li>
+</ul>
+
+<p>
+Ventajas y desventajas:
+</p>
+<ul class="org-ul">
+<li>El CSV es más genérico y más conocido y por tanto puede funcionar mejor en más</li>
+</ul>
+<p>
+escenarios. Por contra, el entrecomillado aumenta el tamaño del archivo y genera también sus inconvenientes.
+</p>
+<ul class="org-ul">
+<li>El TSV (&lt;TAB&gt; o <code>\t</code>) no suele presentar el inconveniente del delimitador como  es menos conocido pero
+también lo es el formato.</li>
+</ul>
+</div>
+</li>
+
+<li><a id="org811c602"></a>*ML<br />
+<div class="outline-text-5" id="text-org811c602">
+<p>
+<code>ML</code> se refiere a <b>lenguaje de marcas</b>, una forma de anotar un documento de tal forma que su sintaxis sea
+distinguible del contenido.
+</p>
+
+<p>
+Tradicionalmente se han utilizado las marcas para hacer anotaciones al texto, por ejemplo, en las labores de
+ revisión del texto, pero los lenguajes de marcas van más allá, pues también son una estructuración del
+ contenido y de sus distintas partes.
+</p>
+
+<p>
+Hay ejemplos de lenguajes informáticos en los orientados a labores de impresión, como troff, TeX o LaTeX.
+</p>
+
+<p>
+El nombre ML viene del <a href="https://en.wikipedia.org/wiki/IBM_Generalized_Markup_Language">IBM GML</a>, lengua de marcas generalizadas en el que luego se inspiró <a href="https://en.wikipedia.org/wiki/IBM_Generalized_Markup_Language">SGML</a>, con dos
+principios:
+</p>
+<ul class="org-ul">
+<li>El marcado es declarativo, describe la estructura del documento y los atributos, no se preocupa tanto por su
+procesado.</li>
+<li>El marcado debe ser riguroso, de cara a que se pueda procesar y aprovechar como un sistema de base de datos
+de documentos.</li>
+</ul>
+
+<p>
+HTML se basa en -es una instancia de- SGML y XML en HTML. HTML fue construido para la web de documentos y XML se inspiró en esa
+potencia para realizar un formato de marcas extensible, de cara al intercambio de datos de cualquier
+aplicación.
+</p>
+
+<p>
+Ha tenido una edad dorada en la década de los 2000, incluso Microsoft convirtió sus formatos de datos a
+formatos basados en XML.
+</p>
+
+<p>
+Aunque se usa mucho en aplicaciones comerciales o industriales, en la actualidad ha perdido mucho peso en
+beneficio de JSON, que es más sencillo y nativo para la web.
+</p>
+</div>
+</li>
+
+<li><a id="org189f408"></a>JSON<br />
+<div class="outline-text-5" id="text-org189f408">
+<p>
+JSON (<i>JavaScript Object Notation</i> o notación de objeto de JavaScript) es un formato de texto muy utilizado
+para el intercambio de datos en la Web.
+</p>
+
+<p>
+Se analiza con la función <code>eval()</code>.
+</p>
+
+<p>
+JSON se construye sobre dos estructuras:
+</p>
+
+<ul class="org-ul">
+<li>Una colección de pares nombre-valor: object, record, struct, dictionary, hash table, keyed list, o associative array.</li>
+<li>Una lista ordenada de valores: array, vector, list, o sequence.</li>
+</ul>
+</div>
+<ul class="org-ul">
+<li><a id="org74e5e0f"></a>Objeto<br />
+<div class="outline-text-6" id="text-org74e5e0f">
+<p>
+Un objeto es un conjunto desordenador de pares de nombre-valor. Un objeto empieza con una llave <code>{</code> y finaliza
+con cierre de llave <code>}</code>. Cada nombre es seguido por un dos puntos <code>:</code> y los pares nombre-valor son separados
+por comas <code>,</code>.
+</p>
+
+<p>
+Ejemplo de objeto:
+</p>
+
+<pre class="example">
+objeto:{"nombre":"Fulano","nombre":"Mengano"}
+</pre>
+</div>
+</li>
+
+<li><a id="org6e7dd8a"></a>Array<br />
+<div class="outline-text-6" id="text-org6e7dd8a">
+<p>
+Un <code>array</code> o serie es una colección ordenada de valores. El array empieza con un corchete <code>[</code> y termina con un
+cierre de corchete <code>]</code>. Los valores son separados por comas.
+</p>
+
+<pre class="example">
+serie:["Fulano","Mengana","Zutanito"]
+</pre>
+</div>
+</li>
+
+<li><a id="org33b4d0e"></a>Value<br />
+<div class="outline-text-6" id="text-org33b4d0e">
+<p>
+Un <code>value</code> o valor puede ser una cadena de caracteres, un número, un valor nulo, un buleano, un objeto o una
+serie. Estas estructuras se pueden anidar.
+</p>
+</div>
+</li>
+<li><a id="org5729681"></a>string<br />
+<div class="outline-text-6" id="text-org5729681">
+<p>
+Un <code>string</code> o cadena es una secuencia de cero o más caracteres Unicode entrecomillados.
+</p>
+</div>
+</li>
+<li><a id="org8ca3142"></a>number<br />
+<div class="outline-text-6" id="text-org8ca3142">
+<p>
+Un número es un número salvo los octales o hexadecimales.
+</p>
+</div>
+</li>
+
+<li><a id="orgef7f56b"></a>Ver un JSON en terminal<br />
+<div class="outline-text-6" id="text-orgef7f56b">
+<div class="org-src-container">
+<pre class="src src-sh">python -m json.tool mi_archivo.json
+
+</pre>
+</div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+<div id="outline-container-org43a29e7" class="outline-4">
+<h4 id="org43a29e7">Tipos de datos</h4>
+<div class="outline-text-4" id="text-org43a29e7">
+<p>
+En general, tratamos con:
+</p>
+
+<ul class="org-ul">
+<li>Números enteros o <i>integers</i></li>
+<li>Decimales, flotantes o <i>floats</i></li>
+<li>Cadenas -de caracteres- o <i>strings</i></li>
+<li>Booleanos: verdadero o falso</li>
+<li>Null: datos nulos</li>
+<li>Otros objetos</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9068892" class="outline-4">
+<h4 id="org9068892">Conversión de datos: XML, CSV, XLSX</h4>
+<div class="outline-text-4" id="text-org9068892">
+</div>
+<ul class="org-ul">
+<li><a id="orge86c803"></a>Pandoc<br />
+<div class="outline-text-5" id="text-orge86c803">
+<p>
+<a href="https://pandoc.org">Pandoc</a> funciona muy bien como conversor entre formatos de marcas, una auténtica navaja suiza para Markdown,
+reStructuredText, textile, HTML, DocBook, LaTeX, MediaWiki, TWiki, TikiWiki, Creole 1.0, Vimwiki, roff man,
+OPML, Emacs Org-Mode, Emacs Muse, txt2tags, Microsoft Word docx, LibreOffice ODT, EPUB o Haddock.
+</p>
+</div>
+</li>
+
+<li><a id="org39134c5"></a>Code beautify<br />
+<div class="outline-text-5" id="text-org39134c5">
+<p>
+<a href="https://codebeautify.org/">Code Beautify</a> transforma datos de unos a otros.
+</p>
+</div>
+<ul class="org-ul">
+<li><a id="orgb9398f7"></a>XML a JSON<br />
+<div class="outline-text-6" id="text-orgb9398f7">
+<p>
+<a href="https://codebeautify.org/xmltojson">https://codebeautify.org/xmltojson</a>
+</p>
+</div>
+</li>
+<li><a id="org0615ab7"></a>CSV a XML<br />
+<div class="outline-text-6" id="text-org0615ab7">
+<p>
+<a href="https://codebeautify.org/csv-to-xml-converter">https://codebeautify.org/csv-to-xml-converter</a>
+</p>
+</div>
+</li>
+<li><a id="org83aebff"></a>JSON a XML<br />
+<div class="outline-text-6" id="text-org83aebff">
+<p>
+<a href="https://codebeautify.org/jsontoxml">https://codebeautify.org/jsontoxml</a>
+</p>
+</div>
+</li>
+</ul>
+</li>
+
+<li><a id="org37545c5"></a>ssconvert<br />
+<div class="outline-text-5" id="text-org37545c5">
+<p>
+<a href="https://www.systutorials.com/docs/linux/man/1-ssconvert/">ssconvert</a> es una utilidad en línea de comandos para transformar hojas de cálculo de unos formatos a
+otros. Forma parte del programa gnumeric, el gestor de hojas de cálculo de GNOME.
+Puede trabajar entre xls, xlsx, odf, html, LaTeX, PDF y CSV, entre otros.
+</p>
+
+<p>
+Con ~ ssconvert &#x2013;list-exporters~ se puede ver la lista de formatos.
+</p>
+</div>
+</li>
+
+<li><a id="org1a0897a"></a>csv a tsv y viceversa con sed<br />
+<div class="outline-text-5" id="text-org1a0897a">
+<p>
+De csv a tsv, transformamos la <code>,</code> en tabulador <code>\t</code>:
+</p>
+
+<pre class="example">
+sed 's/,/\t/' archivo.csv &gt; archivo.tsv
+</pre>
+
+<p>
+De tsv a csv, al revés:
+</p>
+
+<pre class="example">
+sed 's/,/\t/' archivo.tsv &gt; archivo.csv
+</pre>
+</div>
+</li>
+
+<li><a id="org230a474"></a>cat y tr<br />
+<div class="outline-text-5" id="text-org230a474">
+<pre class="example">
+$ cat archivo.csv | tr "," "\\t" &gt; Galton.tsv
+</pre>
+</div>
+</li>
+<li><a id="org9c60db0"></a>csvkit<br />
+<div class="outline-text-5" id="text-org9c60db0">
+<p>
+<a href="https://csvkit.readthedocs.io/en/1.0.3/">csvkit</a> es un conjunto de programas en línea de comandos para convertir o trabajar con CSV. Se pueden convertir
+XLSX o JSON a CSV, entre otras opciones.
+</p>
+</div>
+</li>
+
+<li><a id="org4734fdc"></a>Open Refine<br />
+<div class="outline-text-5" id="text-org4734fdc">
+<p>
+Se puede utilizar para pasar de un formato a otro. En este <a href="https://onlinejournalismblog.com/2015/10/21/how-to-convert-xml-or-json-into-spreadsheets-using-open-refine/">ejemplo</a>, se pasa de XML o JSON a CSV o XLSX.
+</p>
+</div>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-org4b3730b" class="outline-4">
+<h4 id="org4b3730b">¿Necesita Open Refine conexión a Internet?</h4>
+<div class="outline-text-4" id="text-org4b3730b">
+<p>
+No
+</p>
+</div>
+</div>
+<div id="outline-container-orge04c93d" class="outline-4">
+<h4 id="orge04c93d">Selección por fechas en refine y agrupación en Refine</h4>
+<div class="outline-text-4" id="text-orge04c93d">
+<p>
+Sí, lo vemos.
+</p>
+</div>
+</div>
+<div id="outline-container-orgabb31f8" class="outline-4">
+<h4 id="orgabb31f8">Grep es súper útil y lo demás sobra</h4>
+<div class="outline-text-4" id="text-orgabb31f8">
+<p>
+Para muestra, un botón:
+<img src="https://swtch.com/~rsc/regexp/grep1p.png" alt="grep1p.png" />
+</p>
+
+<p>
+(Citado en esta <a href="http://www.cs.columbia.edu/~sedwards/classes/2016/4115-summer-cvn/aho.pdf">presentación</a>)
+</p>
+
+<p>
+Se muestra el tiempo que emplean distintos lenguajes en búsqueda de patrones de expresiones regulares. grep y awk ganan ampliamente.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2680e85" class="outline-4">
+<h4 id="org2680e85">¿Y no vamos a ver algún programita que haga gráficos?</h4>
+<div class="outline-text-4" id="text-org2680e85">
+<p>
+Si da tiempo, veremos <a href="https://www.datawrapper.de">datawrapper</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org49704cc" class="outline-4">
+<h4 id="org49704cc">Gestión paquetes windows</h4>
+<div class="outline-text-4" id="text-org49704cc">
+<p>
+Si ya te has acostumbrado a apt-cyg para Cygwin, <a href="https://chocolatey.org/">Chocolatey</a> hace lo mismo para Windows, es decir, es un
+gestor de programas para Windows.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeefef65" class="outline-3">
+<h3 id="orgeefef65">Github</h3>
+<div class="outline-text-3" id="text-orgeefef65">
+<p>
+Lo primero que se necesita es tener git instalado, podemos hacerlo con apt-cyg en Cygwin, Brew en Mac o el
+modo adecuado en las distribuciones GNU/Linux.
+</p>
+
+<p>
+Vamos a trabajar con un servicio web remoto que soporta git, <a href="https://github.com">Github</a>. Necesitamos una cuenta en este servicio
+gratuito.
+</p>
+
+<p>
+Creamos un repositorio siguiendo el método de línea de comandos.
+</p>
+
+<p>
+Para cualquier duda, se pueden consultar mis <a href="https://github.com/flowsta/github">notas de Github</a>.
+Seguimos el
+</p>
+</div>
+</div>
+<div id="outline-container-org3d8a0dc" class="outline-3">
+<h3 id="org3d8a0dc">Hagamos nuestra propia web</h3>
+<div class="outline-text-3" id="text-org3d8a0dc">
+<p>
+Para ello, hemos de elegir una plantilla de <a href="https://html5up.net">html5up.net</a>. Recomiendo Prollogue, pero elegid la que queráis.
+</p>
+
+<p>
+Si elegís Prologue, descargad el <a href="https://html5up.net/prologue/download">zip</a> y descomprimirlo con <code>unzip</code> en el directorio donde queráis poner la web.
+</p>
+
+<p>
+Si no tenéis <code>unzip</code>, solo hay que descargarlo.
+</p>
+
+<p>
+Aprovecho para recomendar en Windows un programa gráfico de gestión de archivos comprimidos: <a href="https://7.zip.org">7-zip</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge7a8b40" class="outline-2">
+<h2 id="orge7a8b40">Quinto día</h2>
+<div class="outline-text-2" id="text-orge7a8b40">
+</div>
+<div id="outline-container-orgf3a2771" class="outline-3">
+<h3 id="orgf3a2771">Desorden del día</h3>
+<div class="outline-text-3" id="text-orgf3a2771">
+<ul class="org-ul">
+<li>Repaso de Github</li>
+<li>Repaso de línea de comandos</li>
+<li>Open Refine</li>
+<li>Scraping: web y pdf</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3630d59" class="outline-3">
+<h3 id="org3630d59">Repaso de línea de comandos</h3>
+<div class="outline-text-3" id="text-org3630d59">
+</div>
+<div id="outline-container-org2dd8853" class="outline-4">
+<h4 id="org2dd8853">seq</h4>
+<div class="outline-text-4" id="text-org2dd8853">
+<p>
+Con <code>seq</code> podemos crear una secuencia de números.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">seq 1 10000 &gt; data/diez-mil.txt
+
+</pre>
+</div>
+
+<p>
+De esta manera, creamos un archivo txt con 10000 líneas con los números de 1 a 10000.
+</p>
+
+<p>
+Sipones un número entre medias es el intervalo. Por ejemplo:
+</p>
+
+<pre class="example">
+seq 1 100 10000 &gt; data/diez-mil-de-cien-en-cien.txt
+</pre>
+
+<p>
+Crea un archivo con números de 1 a 10000 cada 100.
+</p>
+
+<ul class="org-ul">
+<li><a href="https://csvkit.readthedocs.io/en/1.0.3/">csvkit</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc723e59" class="outline-3">
+<h3 id="orgc723e59">Web scraping</h3>
+<div class="outline-text-3" id="text-orgc723e59">
+<p>
+Web scraping significa literalmente rascar datos de la web. Por ello podemos pensar que cada vez que queramos
+información de la web debemos hacer web scraping, y eso no es del todo así.
+</p>
+
+<p>
+Web scraping sería, estrictamente, sacar algunos datos, los que precisemos, del conjunto de contenidos que
+muestran las webs. Esto de rascar no es casual, obedece a que aunque HTML es un lenguaje de marcas
+estructurado y la web puede simular información estructurada y ordenada, ni esto es siempre así &#x2013;por malas
+prácticas voluntarias o involuntarias de quienes producen o publican la información web&#x2013; ni suele estar
+accesible al estilo base de datos pública de datos abiertos.
+</p>
+
+<p>
+Otra opción, que no es scraping, es utilizar un crawler como nuestra querida <code>wget</code> o el todavía no conocido
+<code>httrack</code> y descargarnos todo el sitio para hacer luego una exploración en local.
+</p>
+
+<p>
+<a href="https://www.simonholywell.com/post/2015/09/scrape-site-with-wget-and-httrack/">Simon Holywell</a> propone esta receta con <code>wget</code>:
+</p>
+
+<pre class="example">
+wget -H -r --level=5 --restrict-file-names=windows --convert-links -e robots=off http://example.org
+</pre>
+
+<ul class="org-ul">
+<li>Se crea una copia local.</li>
+<li><code>--convert-links</code> convierte los enlaces en URLs relativas de tal manera que puede explorarse todo el sitio
+en local.</li>
+<li>Con <code>--restrict-file-names\=windows</code> se aseguran nombres de archivo seguros, sin parámetros añadidos.</li>
+</ul>
+
+<p>
+A continuación jugamos un poco con algunos listados y tablas de distintas urls probando:
+</p>
+
+<ul class="org-ul">
+<li>Funciones <code>importHTML()</code> e <code>importXML()</code> de Google Spreadsheets</li>
+<li>Repaso de <code>curl</code>, <code>wget</code> y <code>lynx</code></li>
+</ul>
+</div>
+
+<div id="outline-container-org3064611" class="outline-4">
+<h4 id="org3064611">ImportHTML()</h4>
+<div class="outline-text-4" id="text-org3064611">
+<p>
+Para esto necesitamos una cuenta de Google y abrir una nueva hoja de cálculo.
+</p>
+
+<p>
+Con <code>importHTML()</code> podemos llevar a esa hoja de cálculo los datos de una tabla o de un listado de una página
+web. Para ello conviene tener ciertas nociones de <i>HTML</i>.
+</p>
+
+<p>
+Los elementos <code>HTML</code> que se ven afectados son <code>table</code> (tabla), <code>ul</code>, <code>ol</code> y <code>dl</code> (listados).
+</p>
+<ul class="org-ul">
+<li><code>ul</code>, que corresponde a <i>unordered list</i> o lista desordenada, la típica lista donde cada elemento aparece con un punto o un guión.</li>
+<li><code>ol</code>, que corresponde a <i>ordered list</i> o lista ordenada, donde los elementos del listado aparecerán ordenados, bien numérica o alfabéticamente, por ejemplo.</li>
+<li><code>dl</code>, corresponde con <i>description list</i>, listas de descripciones</li>
+<li><code>table</code>, corresponde con una tabla de datos tabulados.</li>
+</ul>
+
+<p>
+Construiremos la función <code>IMPORTHTML</code> con la <i>url</i> entrecomillada, separado por punto y coma y entrecomillado el elemento del que queremos sacar la información, bien una lista <code>list</code> o una tabla <code>table</code>, seguido del número de elemento en la página de su mismo tipo, separado por otro punto y coma:
+</p>
+
+<pre class="example">
+=IMPORTHTML("URL";"list|table";n)
+</pre>
+</div>
+</div>
+<div id="outline-container-orgbdf38c1" class="outline-4">
+<h4 id="orgbdf38c1">ImportXML()</h4>
+<div class="outline-text-4" id="text-orgbdf38c1">
+<p>
+Una vez que hemos probado <code>importHTML()</code> vamos con <code>importXML()</code>. Si la primera tenía tres argumentos, en esta
+segunda solo son dos, pero el segundo puede ser muy simple o muy complejo.
+</p>
+
+<p>
+El esquema es:
+</p>
+<pre class="example">
+IMPORTXML("url";"consulta-xpath")
+</pre>
+
+<p>
+Como vemos, el primer argumento es la URL sobre la que queremos obtener datos y el segundo es la consulta
+<code>xpath</code>.
+</p>
+
+<p>
+<a href="https://es.wikipedia.org/wiki/XPath">XPATH</a> es el acrónimo de <code>XML Path</code> o ruta XML. Es decir, se trata de identificar los nodos de un archivo
+XML. La web son archivos HTML pero al ser renderizados por el navegador crea un DOM (<i>Document Object Model</i>,
+modelo de objetos de documento) como un árbol de objetos que puede ser leído por XPATH.
+</p>
+</div>
+</div>
+<div id="outline-container-org2856db2" class="outline-4">
+<h4 id="org2856db2">XPATH</h4>
+<div class="outline-text-4" id="text-org2856db2">
+<p>
+Algunos  ejemplos:
+</p>
+
+<ul class="org-ul">
+<li>"nombre_del_nodo", selecciona todos los nodos con ese nombre</li>
+<li><code>/</code>, selecciona del nodo root.</li>
+<li><code>//</code>, selecciona nodos en el documento desde el nodo actual que
+coincide con la selección, sin importar donde se encuentran.</li>
+<li><code>.</code>, selecciona el nodo actual</li>
+<li><code>..</code>, selecciona el nodo padre del nodo actual.</li>
+<li><code>@</code>, selecciona atributos</li>
+</ul>
+
+<p>
+Se pueden consultar mis <a href="https://github.com/flowsta/scraping">apuntes de Scraping</a>. Si queréis aprender web scraping, XPATH es el camino.
+</p>
+</div>
+
+
+<ul class="org-ul">
+<li><a id="orgf5ac462"></a>Listado de atributos<br />
+<div class="outline-text-5" id="text-orgf5ac462">
+<p>
+Por ejemplo, si queremos obtener el listado de todos los atributos <code>href</code> que contiene el elemento <code>a</code> que
+corresponde a los enlaces, de la <i>URL</i>, de una página web, haremos:
+</p>
+
+<pre class="example">
+=IMPORTXML("URL";"//a/@href")
+
+</pre>
+</div>
+</li>
+
+<li><a id="org4c9b9d1"></a>Enlaces de una clase<br />
+<div class="outline-text-5" id="text-org4c9b9d1">
+<p>
+Pero podríamos elegir sólo los enlaces que tienen una determinada clase, lo que haríamos también con <i>XPath</i> de esta manera:
+</p>
+
+<pre class="example">
+=IMPORTXML("URL";"//a[@class='clase']")
+
+</pre>
+</div>
+</li>
+
+<li><a id="orgbeed3a0"></a>Referencia a celdas<br />
+<div class="outline-text-5" id="text-orgbeed3a0">
+<p>
+En vez de editar la fórmula completa, se puede poner la <i>URL</i> en una celda, el elemento <i>XPath</i> a buscar en otra y construir la expresión llamando a las celdas:
+</p>
+
+<pre class="example">
+=IMPORTXML(celda1;celda2)
+</pre>
+</div>
+</li>
+
+<li><a id="org8991f36"></a>Elementos que comienzan con&#x2026;<br />
+<div class="outline-text-5" id="text-org8991f36">
+<p>
+La potencia de <i>Xpath</i> es <i>infinita</i> y podemos hacer extracciones de datos muy concretas, como por ejemplo seleccionar solo los elementos que comiencen con una clase específica, como <code>[starts-with</code> y luego especificar la clase con el atributo <code>@</code> donde <code>class</code> es el valor del atributo <code>(@class, 'clase')</code>
+</p>
+
+<p>
+Si queremos sacar todos los enlaces una <i>URL</i>, después de inspeccionar la página, comprobamos que los enlaces se encuentran en un <code>div</code> que tiene la clase <code>clase</code>. Construimos esta fórmula de <code>IMPORTXML</code>
+</p>
+
+<pre class="example">
+IMPORTXML("URL"; "//div[starts-with(@class,'clase')]")
+</pre>
+
+<p>
+Si quisiéramos los enlaces, añadiríamos al final <code>//@href</code>, ya que el enlace se encuentra en el atributo de <code>a</code>, <code>href</code>
+</p>
+
+<pre class="example">
+=IMPORTXML("URL"; "//div[starts-with(@class,'clase')]//@href")
+
+</pre>
+
+<p>
+Puede ser que la página no traiga los enlaces absolutos sino que sean relativos, por lo que podemos concatenarlos con la función <code>CONCATENATE</code>:
+</p>
+
+<pre class="example">
+=CONCATENATE("URL",celda-resultados)
+
+</pre>
+
+<p>
+Y luego estiramos esta función al resto de las celdas que lo requieran.
+</p>
+</div>
+</li>
+
+<li><a id="org0c0ad06"></a>Algunos ejemplos XPath útiles:<br />
+<div class="outline-text-5" id="text-org0c0ad06">
+<ul class="org-ul">
+<li><code>//</code>, descarga todos los elementos de html que empiecen con <code>&lt;</code></li>
+<li><code>//a</code>, descarga todos los contenidos del elemento <code>a</code>, los enlaces, de la URL que decidamos.</li>
+<li><code>//a/@href</code>, descarga todos los contenidos del atributo <code>href</code> del elemento <code>a</code>, que corresponden con la URL del enlace.</li>
+<li><code>//input[@type</code>'text']/..=, descarga todos los elementos padre de los elementos de texto <code>input</code></li>
+<li><code>count(//p)</code>, cuenta el número de elementos que le digamos, en este caso párrafos <code>p</code></li>
+<li><code>//a[contains(@href, 'protesta')]/@href</code>, encuentra todos los enlaces que contienen la palabra <code>protesta</code></li>
+<li><code>//div[not(@class</code>'left')]=, encuentra todos los <code>div</code> cuyas clases no sean <code>left</code></li>
+<li><code>//img/@alt</code>, muestra todos los textos de los atributos <code>alt</code> de las imágenes <code>img</code></li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-orgde95773" class="outline-4">
+<h4 id="orgde95773">Más Scraping</h4>
+<div class="outline-text-4" id="text-orgde95773">
+<ul class="org-ul">
+<li><a href="https://blog.scrapinghub.com/2016/10/27/an-introduction-to-xpath-with-examples">https://blog.scrapinghub.com/2016/10/27/an-introduction-to-xpath-with-examples</a></li>
+<li><a href="https://stackoverflow.com/questions/7361229/data-scraping-with-wget-and-regex">https://stackoverflow.com/questions/7361229/data-scraping-with-wget-and-regex</a></li>
+<li><a href="http://scraping.pro/xpath-review/">http://scraping.pro/xpath-review/</a></li>
+<li><a href="https://www.joyofdata.de/blog/using-linux-shell-web-scraping/">https://www.joyofdata.de/blog/using-linux-shell-web-scraping/</a></li>
+<li><a href="https://stackoverflow.com/questions/19098315/httrack-wget-curl-scrape-fetch">https://stackoverflow.com/questions/19098315/httrack-wget-curl-scrape-fetch</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org21796be" class="outline-2">
+<h2 id="org21796be">Sexto día</h2>
+<div class="outline-text-2" id="text-org21796be">
+</div>
+<div id="outline-container-org55d80c8" class="outline-3">
+<h3 id="org55d80c8">Desorden del día</h3>
+<div class="outline-text-3" id="text-org55d80c8">
+<ul class="org-ul">
+<li>QGIS</li>
+<li>Plantilla de HTML</li>
+<li>Bash avanzado</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org868e712" class="outline-3">
+<h3 id="org868e712">QGIS</h3>
+<div class="outline-text-3" id="text-org868e712">
+<ul class="org-ul">
+<li><a href="https://alejandrozappala.com/presentacion/datos/municipios_peninsula.zip">https://alejandrozappala.com/presentacion/datos/municipios_peninsula.zip</a></li>
+<li><a href="https://www.qgis.org/en/site/forusers/download.html">https://www.qgis.org/en/site/forusers/download.html</a></li>
+<li><a href="http://alejandrozappala.com/presentacion/cartography/ejercicios.html#1">http://alejandrozappala.com/presentacion/cartography/ejercicios.html#1</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8122474" class="outline-3">
+<h3 id="org8122474">Repaso Github</h3>
+<div class="outline-text-3" id="text-org8122474">
+</div>
+<div id="outline-container-org2ceda4e" class="outline-4">
+<h4 id="org2ceda4e">Cambiar el editor por defecto</h4>
+<div class="outline-text-4" id="text-org2ceda4e">
+<p>
+Por defecto, bash y git vienen con el editor <code>vi</code> por defecto. Para cambiarlo, tal como explican en <a href="https://stackoverflow.com/questions/2596805/how-do-i-make-git-use-the-editor-of-my-choice-for-commits">stackoverflow</a>, podemos hacerlo en una o en
+ambas.
+</p>
+</div>
+<ul class="org-ul">
+<li><a id="org164b4af"></a>core.editor<br />
+<div class="outline-text-5" id="text-org164b4af">
+<p>
+Para usar <code>nano</code> o el editor de texto CLI de nuestra elección, corremos:
+</p>
+<pre class="example">
+git config --global core.editor "nano"
+</pre>
+
+<p>
+La opción <code>--global</code> es para hacerlo en todo git. Si solo quisiéramos en este repositorio, sería sin esa
+opción.
+</p>
+</div>
+</li>
+<li><a id="orgc739743"></a>nano como editor por defecto<br />
+<div class="outline-text-5" id="text-orgc739743">
+<p>
+Lo hacemos en dos líneas, con dos variables de entorno:
+</p>
+
+<pre class="example">
+export VISUAL=nano
+export EDITOR=$VISUAL
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0cfc07e" class="outline-2">
+<h2 id="org0cfc07e">Séptimo día</h2>
+<div class="outline-text-2" id="text-org0cfc07e">
+</div>
+
+<div id="outline-container-orge98d626" class="outline-3">
+<h3 id="orge98d626">Desorden del día</h3>
+<div class="outline-text-3" id="text-orge98d626">
+<ul class="org-ul">
+<li>Repaso general</li>
+<li>Dudas</li>
+<li>Documentación</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2c8a9a2" class="outline-3">
+<h3 id="org2c8a9a2">Repaso general</h3>
+<div class="outline-text-3" id="text-org2c8a9a2">
+<p>
+He intentado dar un panorama introductorio lo más profundo posible de varias tecnologías. Aposté por que
+empezáramos por la terminal para no quedarnos faltos de tiempo y creo que habéis conseguido empezar a
+controlar la herramienta.
+</p>
+
+<p>
+La terminal os va a dar las bases para probar, practicar y aprender lo demás.
+</p>
+
+<p>
+Para practicar, y retomando lo que hicimos el otro día, vamos a configurar el editor de texto nano para que
+sea el editor por defecto de la terminal, de git y además para que muestre resaltado de sintaxis.
+</p>
+
+<p>
+Recordad que el resaltado de sintaxis es una de las características fundamentales de un editor de textos, tal
+como contaba en mi <a href="https://blog.infotics.es/2015/11/11/editor-de-textos/">blog</a>.
+</p>
+
+<p>
+Si no os acordáis la URL del artículo, podemos encontrarlo fácilmente con el operador de búsqueda <code>site:</code> de
+los busdcadores:
+</p>
+
+<pre class="example">
+site:infotics.es editor de textos
+</pre>
+</div>
+
+<div id="outline-container-orgbd966ef" class="outline-4">
+<h4 id="orgbd966ef">Resaltado de sintaxis en nano</h4>
+<div class="outline-text-4" id="text-orgbd966ef">
+<p>
+Para activar el resaltado de sintaxis en nano enlazamos en el archivo de configuración de nano los archivos
+adecuados.
+</p>
+
+<p>
+Primero comprobamos que están en <code>/usr/share/nano</code>. Si no está, podemos descargarnos unos archivos de
+configuración que encontramos en este <a href="https://github.com/scopatz/nanorc">repositorio</a>:
+</p>
+
+<pre class="example">
+git clone https://github.com/scopatz/nanorc.git
+</pre>
+
+<p>
+Ahora que ya están, se puede editar el archivo de configuración de <code>nano</code>, <code>.nanorc</code> con <code>nano ~/.nanorc</code>:
+</p>
+
+<pre class="example">
+include "~/.nanorc
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org079c83b" class="outline-2">
+<h2 id="org079c83b">Extra</h2>
+<div class="outline-text-2" id="text-org079c83b">
+</div>
+<div id="outline-container-orgfeff8dc" class="outline-3">
+<h3 id="orgfeff8dc">Cron y crontab</h3>
+<div class="outline-text-3" id="text-orgfeff8dc">
+<p>
+Cron es un administrador de tareas programadas. Se activa cada minuto y examina las configuraciones que están
+en /etc/crontab y en las de cada usuarix.
+</p>
+</div>
+
+<div id="outline-container-orgfc6cad4" class="outline-4">
+<h4 id="orgfc6cad4">¿Qué cosas se pueden hacer?</h4>
+<div class="outline-text-4" id="text-orgfc6cad4">
+<ul class="org-ul">
+<li>Copia de seguridad automatizada.</li>
+<li>Registros de bases de datos.</li>
+<li>Sincronización de información.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga3224a4" class="outline-4">
+<h4 id="orga3224a4">Para listar las tareas</h4>
+<div class="outline-text-4" id="text-orga3224a4">
+<div class="org-src-container">
+<pre class="src src-sh">crontab -l
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5b791b4" class="outline-4">
+<h4 id="org5b791b4">Para editar el archivo</h4>
+<div class="outline-text-4" id="text-org5b791b4">
+<p>
+Para editar el archivo propio de tareas, se hace con <code>crontab -e</code>:
+</p>
+
+<pre class="example">
+crontab -e
+</pre>
+
+<p>
+Esto abrirá nuestro archivo de configuración de crontab con nuestro editor CLI que tengamos especificado en la
+variable <code>$EDITOR</code>. Si no tenemos a <code>nano</code>, se puede usar el comando <code>export</code> para establecer la variable.
+</p>
+
+<pre class="example">
+export EDITOR=nano
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org0ff726e" class="outline-4">
+<h4 id="org0ff726e">Eliminar el archivo</h4>
+<div class="outline-text-4" id="text-org0ff726e">
+<p>
+Para eliminar el archivo de crontab, tan solo hay que borrarlo con la opción <code>-r</code>:
+</p>
+
+<pre class="example">
+crontab -r
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org128d23f" class="outline-4">
+<h4 id="org128d23f">Sintaxis</h4>
+<div class="outline-text-4" id="text-org128d23f">
+<p>
+Se escriben cinco asteriscos separados por espacio o tabulación.
+En cada uno de los asteriscos se ponen valores para marcar el tiempo de ejecución del cron, en este orden:
+</p>
+
+<ul class="org-ul">
+<li>Minutos.</li>
+<li>Horas.</li>
+<li>Día en el mes.</li>
+<li>Mes.</li>
+<li>Día en la semana.</li>
+</ul>
+
+<p>
+A continuación, va el comando a ejecutar.
+</p>
+</div>
+
+<ul class="org-ul">
+<li><a id="org0505646"></a>Asterisco: ejecución en todos los periodos de tiempo<br />
+<div class="outline-text-5" id="text-org0505646">
+<p>
+El asterisco <code>*</code> significa ejecutarse en todos los periodos de tiempo de esa unidad de tiempo, es decir:
+</p>
+<ul class="org-ul">
+<li>Todos los minutos</li>
+<li>Todas las horas</li>
+<li>Todos los días del mes.</li>
+<li>Todos los meses</li>
+<li>Todos los días de la semana.</li>
+</ul>
+
+<pre class="example">
+
+*     *     *   *    *        comando a ejecutar
+-     -     -   -    -
+|     |     |   |    |
+|     |     |   |    +----- día en la semana (0 - 6) (domingo=0)
+|     |     |   +------- mes (1 - 12)
+|     |     +--------- día en el mes (1 - 31)
+|     +----------- hora (0 - 23)
++------------- minuto (0 - 59)
+</pre>
+</div>
+</li>
+<li><a id="org2906474"></a>Periodos concretos<br />
+<div class="outline-text-5" id="text-org2906474">
+<p>
+Se pueden elegir periodos de tiempo, por ejemplo, 
+</p>
+
+<pre class="example">
+*/15 * * * * /home/flow/scripts/fecha.sh
+
+</pre>
+
+<p>
+Ejecutará el script cada 15 minutos por el valor <code>*/15</code> en minutos y <code>*</code> en los demás.
+</p>
+
+<p>
+O bien cada cinco horas:
+</p>
+
+<pre class="example">
+0 */5 * * * /home/flow/scripts/fecha.sh
+
+</pre>
+</div>
+</li>
+
+<li><a id="org44306fd"></a>Rangos<br />
+<div class="outline-text-5" id="text-org44306fd">
+<p>
+Se puede elegir un rango:
+</p>
+<pre class="example">
+* 6-8 * * * /home/flow/scripts/fecha.sh
+</pre>
+<ul class="org-ul">
+<li>De las 6 a las 8 AM por el valor <code>6-8</code>, en cada minuto por el valor <code>*</code> de minuto.</li>
+</ul>
+
+<p>
+O varios, separados por comas:
+</p>
+
+<pre class="example">
+0 8-12,14-20 * * * /home/flow/scripts/fecha.sh 
+</pre>
+<ul class="org-ul">
+<li>Rangos: de 8 a 12 y de 14 a 20 horas.</li>
+<li>Cada hora exacta: minuto 0, el primer valor.</li>
+</ul>
+</div>
+</li>
+<li><a id="org5dbfd4e"></a>Un día concreto a una hora<br />
+<div class="outline-text-5" id="text-org5dbfd4e">
+<pre class="example">
+0 6 1 * * /home/flow/scripts/fecha.sh
+</pre>
+</div>
+</li>
+
+<li><a id="orgba91481"></a>Todos los días a una hora concreta<br />
+<div class="outline-text-5" id="text-orgba91481">
+<pre class="example">
+0 6,20  * * * /home/flow/scripts/fecha.sh
+
+</pre>
+
+<ul class="org-ul">
+<li>Se ejecuta todos los días por el valor 0.</li>
+<li>A las 6,20 por el valor 6,20 en las horas.</li>
+</ul>
+</div>
+</li>
+
+<li><a id="orgad1c52f"></a>Todos los días de un mes a una hora exacta<br />
+<div class="outline-text-5" id="text-orgad1c52f">
+<pre class="example">
+0 6 * 1 * /home/flow/scripts/fecha.sh
+</pre>
+
+<ul class="org-ul">
+<li>Todos los días de enero por el valor 1 en mes y * en días.</li>
+<li>A las 6 AM por el valor 6 de hora y 0 de minuto.</li>
+</ul>
+</div>
+</li>
+
+<li><a id="orgee9ea28"></a>Todos los lunes a las 6 horas<br />
+<div class="outline-text-5" id="text-orgee9ea28">
+<pre class="example">
+0 6 * * 1 /home/flow/scripts/fecha.sh
+</pre>
+
+<ul class="org-ul">
+<li>Todos los lunes por el valor 1 (el primer día es el domingo que es valor 0).</li>
+<li>A las 6 AM por el valor 6 de hora y 0 de minuto.</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+
+
+<div id="outline-container-orge57ccf5" class="outline-4">
+<h4 id="orge57ccf5">Una tarea del cron</h4>
+<div class="outline-text-4" id="text-orge57ccf5">
+<p>
+Vamos a crear un <i>script</i> para crear una tarea:
+</p>
+
+<pre class="example">
+nano scripts/fecha.sh
+</pre>
+
+<p>
+Y el contenido es:
+</p>
+<pre class="example">
+#/bin/bash
+
+date &gt;&gt; /tmp/fecha.log
+
+</pre>
+
+<p>
+Cambiamos los permisos de este archivo para hacerlo ejecutable:
+</p>
+
+<pre class="example">
+chmod u-x scripts/fecha.sh
+</pre>
+
+<p>
+Lo ejecutamos para comprobar que funciona:
+</p>
+
+<pre class="example">
+.scripts/fecha.sh
+</pre>
+
+<p>
+Y a su vez comprobamos que ha resultado con <code>cat</code>:
+</p>
+
+<pre class="example">
+cat /tmp/fecha.log
+</pre>
+
+<p>
+Si en vez de cada minuto queremos hacerlo cada 10 minutos, hemos de fraccionarlo por 10:
+</p>
+
+<pre class="example">
+*/10 * * * * /home/flow/scripts/fecha.sh
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgb6847b2" class="outline-2">
+<h2 id="orgb6847b2">Algunos enlaces desordenados</h2>
+<div class="outline-text-2" id="text-orgb6847b2">
+<ul class="org-ul">
+<li><a href="https://www.thegeekstuff.com/2013/06/cut-command-examples/">https://www.thegeekstuff.com/2013/06/cut-command-examples/</a></li>
+<li><a href="https://github.com/rosepac/biblioteca-espanol-gratis/blob/master/libros-programacion-gratis.md#emacs">https://github.com/rosepac/biblioteca-espanol-gratis/blob/master/libros-programacion-gratis.md#emacs</a></li>
+<li><a href="https://es.wikibooks.org/wiki/El_Manual_de_BASH_Scripting_B%C3%A1sico_para_Principiantes">https://es.wikibooks.org/wiki/El_Manual_de_BASH_Scripting_Básico_para_Principiantes</a></li>
+<li><a href="https://twitter.com/climagic/">https://twitter.com/climagic/</a></li>
+<li><a href="https://github.com/rastapasta/mapscii">https://github.com/rastapasta/mapscii</a></li>
+<li>mapscii: telnet mapscii.me</li>
+<li>fancy-prompt-macosx: <a href="https://github.com/ThatJoeMoore/fancy-prompt">https://github.com/ThatJoeMoore/fancy-prompt</a></li>
+<li><a href="https://github.com/andresgongora/scripts/blob/master/fancy-bash-promt.sh">https://github.com/andresgongora/scripts/blob/master/fancy-bash-promt.sh</a></li>
+<li><a href="https://stackoverflow.com/questions/10172327/linux-curl-save-as-utf-8">https://stackoverflow.com/questions/10172327/linux-curl-save-as-utf-8</a></li>
+<li><a href="https://www.class-central.com/">https://www.class-central.com/</a></li>
+<li><a href="https://www.nanotutoriales.com/introduccion-a-cron">https://www.nanotutoriales.com/introduccion-a-cron</a></li>
+<li><a href="https://www.gnu.org/software/bash/manual/bashref.html">https://www.gnu.org/software/bash/manual/bashref.html</a></li>
+<li><a href="https://www.linux.com/learn/how-make-fancy-and-useful-bash-prompt-linux">https://www.linux.com/learn/how-make-fancy-and-useful-bash-prompt-linux</a></li>
+<li><a href="https://ss64.com/">https://ss64.com/</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Adolfo Antón Bravo</p>
+<p class="date">Created: 2018-12-30 dom 02:44</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
